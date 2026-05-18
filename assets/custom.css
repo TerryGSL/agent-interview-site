@@ -1,51 +1,88 @@
-/* 中文字体优化 */
+/* 中文字体 */
 .md-typeset { font-feature-settings: "tnum"; line-height: 1.75; }
 .md-typeset h1, .md-typeset h2, .md-typeset h3 { font-weight: 700; }
-.md-typeset h2 { border-bottom: 2px solid var(--md-primary-fg-color--light); padding-bottom: 0.3em; }
-.md-typeset h3 { color: var(--md-primary-fg-color); }
+.md-typeset h2 { border-bottom: 2px solid var(--md-primary-fg-color--light); padding-bottom: 0.3em; margin-top: 2em; }
+.md-typeset h3 { color: var(--md-primary-fg-color); margin-top: 1.5em; }
 
-/* 卡片网格 */
+/* 卡片网格（首页用）*/
 .grid.cards > ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; padding: 0; list-style: none; }
 .grid.cards > ul > li { 
   border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 12px;
-  padding: 1.2rem;
-  transition: all 0.2s;
-  background: var(--md-default-bg-color);
+  border-radius: 12px; padding: 1.2rem;
+  transition: all 0.2s; background: var(--md-default-bg-color);
 }
 .grid.cards > ul > li:hover { 
   border-color: var(--md-primary-fg-color);
   box-shadow: 0 4px 16px rgba(63, 81, 181, 0.15);
   transform: translateY(-2px);
 }
-.grid.cards > ul > li > p:first-child { margin-top: 0; font-weight: 600; font-size: 1.1em; }
-.grid.cards > ul > li > p:last-child { margin-bottom: 0; }
-.grid.cards a { text-decoration: none; color: var(--md-primary-fg-color); }
-.grid.cards a:hover { text-decoration: underline; }
 
-/* 章节间分隔 */
-.md-typeset hr { border-bottom: 2px dashed var(--md-default-fg-color--lightest); margin: 2em 0; }
-
-/* mermaid 图居中带圆角 */
+/* mermaid 美化 */
 .md-typeset .mermaid { 
   text-align: center;
   background: var(--md-code-bg-color);
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1.5em 0;
+  border-radius: 8px; padding: 1rem; margin: 1.5em 0;
 }
 
-/* 表格优化 */
+/* 表格 */
 .md-typeset table:not([class]) { font-size: 0.9em; }
 .md-typeset table:not([class]) th { background: var(--md-primary-fg-color); color: white; }
 
-/* Story / Q 题号高亮 */
+/* ⭐ Material 自带的 footer 上一章下一章 - 加强醒目度 */
+.md-footer__inner {
+  padding: 1.2rem 0.8rem !important;
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--md-primary-fg-color--dark) 100%);
+}
+.md-footer__link {
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px;
+  margin: 0 0.4rem;
+  background: rgba(255,255,255,0.08);
+  transition: all 0.2s;
+}
+.md-footer__link:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.02);
+}
+.md-footer__title { color: rgba(255,255,255,0.95); font-weight: 600; }
+.md-footer__direction { color: rgba(255,255,255,0.7); font-size: 0.8em; }
+
+/* ⭐ 内嵌的章节跳转卡片 - 注入到每个章节末尾 */
+.chapter-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 3em 0 2em;
+  padding-top: 2em;
+  border-top: 2px dashed var(--md-default-fg-color--lightest);
+}
+.chapter-nav a {
+  display: block;
+  padding: 1.2rem 1.5rem;
+  border: 2px solid var(--md-primary-fg-color);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+  transition: all 0.2s;
+  background: var(--md-default-bg-color);
+}
+.chapter-nav a:hover {
+  background: var(--md-primary-fg-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(63, 81, 181, 0.3);
+}
+.chapter-nav a.prev::before { content: "← "; }
+.chapter-nav a.next { text-align: right; }
+.chapter-nav a.next::after { content: " →"; }
+.chapter-nav a.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; border-style: dashed; }
+.chapter-nav small { display: block; font-weight: 400; font-size: 0.8em; opacity: 0.7; margin-bottom: 0.2em; }
+
+/* H3 题号高亮 */
 .md-typeset h3:has(strong:first-child) { 
   background: linear-gradient(90deg, var(--md-primary-fg-color--light) 0%, transparent 100%);
-  padding: 0.5em 0.8em;
+  padding: 0.4em 0.8em;
   border-left: 4px solid var(--md-primary-fg-color);
   border-radius: 0 4px 4px 0;
 }
-
-/* admonition 中文友好 */
-.md-typeset .admonition, .md-typeset details { font-size: 0.95em; }
