@@ -1,0 +1,82 @@
+site_name: Agent 工程师面试总册
+site_description: Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切夜间模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切日间模式
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      toc_depth: 4
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+nav:
+  - 📑 导读: 00-intro.md
+  - 💼 项目经历: 01-projects.md
+  - 🧠 Agent 基础: 02-basics.md
+  - 🏗️ Runtime 架构: 03-runtime.md
+  - 📦 上下文工程: 04-context.md
+  - 🔍 RAG 与检索: 05-rag.md
+  - 💾 记忆系统: 06-memory.md
+  - 🗜️ 上下文压缩: 07-compaction.md
+  - 🔧 工具与沙箱: 08-tools.md
+  - 📊 评估体系: 09-eval.md
+  - 💻 Coding Agent: 10-coding.md
+  - 🎓 训练与模型: 11-training.md
+  - 🔌 协议与生态: 12-protocols.md
+  - 🤝 Multi-Agent: 13-multi-agent.md
+  - 📱 端侧/多模态/高并发: 14-edge.md
+  - 🏛️ 系统设计: 15-sysdesign.md
+  - 🎤 面试表达: 16-interview.md
+
+copyright: Built with MkDocs Material
