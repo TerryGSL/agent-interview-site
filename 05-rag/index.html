@@ -1,0 +1,1757 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图">
+      
+      
+      
+      
+        <link rel="prev" href="../04-context/">
+      
+      
+        <link rel="next" href="../06-memory/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🔍 RAG 与检索 - Agent 工程师面试总册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-rag" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Agent 工程师面试总册" class="md-header__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent 工程师面试总册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔍 RAG 与检索
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📑 导读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💼 项目经历
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧠 Agent 基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-runtime/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏗️ Runtime 架构
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-context/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📦 上下文工程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔍 RAG 与检索
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-memory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💾 记忆系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-compaction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🗜️ 上下文压缩
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔧 工具与沙箱
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-eval/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📊 评估体系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-coding/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💻 Coding Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-training/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎓 训练与模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-protocols/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔌 协议与生态
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-multi-agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🤝 Multi-Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-edge/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📱 端侧/多模态/高并发
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-sysdesign/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏛️ 系统设计
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../16-interview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎤 面试表达
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Agent 工程师面试总册" class="md-nav__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agent 工程师面试总册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💼 项目经历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Agent 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Runtime 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 4 章 · RAG 与检索】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 4 章 · RAG 与检索】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rag-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】RAG 高频题 11 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q41-rag-agent-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.1 · 什么是 RAG？为什么 Agent 需要 RAG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q42-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.2 · 标准 RAG 流程是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q43-rag-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.3 · RAG 的 chunking 怎么做？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q44-rag-top-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.4 · RAG 中 Top-K 怎么选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q45-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.5 · 什么是 Hybrid Search？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q46-rerank-rag-rerank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.6 · 什么是 rerank？为什么 RAG 需要 rerank？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q47-query-rewrite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.7 · 什么是 query rewrite？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q48-hyde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.8 · 什么是 HyDE？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q49-multi-hop-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.9 · 什么是 Multi-hop RAG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q410-graphrag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.10 · 什么是 GraphRAG？它解决什么问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q411-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.11 · RAG 怎么评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentic-rag-self-rag-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】Agentic RAG / Self-RAG 3 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q412-rag-agentic-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.12 · 普通 RAG 和 Agentic RAG 有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q413-self-rag-corrective-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.13 · 什么是 Self-RAG 或 Corrective RAG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q414-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.14 · RAG 如何处理权限问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 记忆系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-compaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 工具与沙箱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Coding Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 协议与生态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📱 端侧/多模态/高并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sysdesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ 系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 4 章 · RAG 与检索】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 4 章 · RAG 与检索】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rag-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】RAG 高频题 11 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q41-rag-agent-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.1 · 什么是 RAG？为什么 Agent 需要 RAG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q42-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.2 · 标准 RAG 流程是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q43-rag-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.3 · RAG 的 chunking 怎么做？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q44-rag-top-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.4 · RAG 中 Top-K 怎么选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q45-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.5 · 什么是 Hybrid Search？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q46-rerank-rag-rerank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.6 · 什么是 rerank？为什么 RAG 需要 rerank？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q47-query-rewrite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.7 · 什么是 query rewrite？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q48-hyde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.8 · 什么是 HyDE？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q49-multi-hop-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.9 · 什么是 Multi-hop RAG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q410-graphrag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.10 · 什么是 GraphRAG？它解决什么问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q411-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.11 · RAG 怎么评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentic-rag-self-rag-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】Agentic RAG / Self-RAG 3 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q412-rag-agentic-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.12 · 普通 RAG 和 Agentic RAG 有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q413-self-rag-corrective-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.13 · 什么是 Self-RAG 或 Corrective RAG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q414-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4.14 · RAG 如何处理权限问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="4-rag">🔍 第 4 章 · RAG 与检索<a class="headerlink" href="#4-rag" title="Permanent link">&para;</a></h1>
+<h2 id="4-rag_1"><strong>【第 4 章 · RAG 与检索】</strong><a class="headerlink" href="#4-rag_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>📌 <strong>本章包含</strong>：标准 RAG 流程 · Chunking · Hybrid Search · Rerank · Query Rewrite · HyDE · Multi-hop RAG · GraphRAG · RAG 评估 · 权限过滤 · Agentic RAG · Self/Corrective RAG。</p>
+<p>💡 <strong>建议</strong>：先看 [项目 C · Story 2 推荐问题召回] 的语义/全文/混合三种对比和实战选型，再看下面的系统化补全。</p>
+</blockquote>
+<hr />
+<hr />
+<h3 id="rag-11"><strong>【追问扩展】RAG 高频题 11 题</strong><a class="headerlink" href="#rag-11" title="Permanent link">&para;</a></h3>
+<h3 id="q41-rag-agent-rag"><strong>Q4.1 · 什么是 RAG？为什么 Agent 需要 RAG？</strong><a class="headerlink" href="#q41-rag-agent-rag" title="Permanent link">&para;</a></h3>
+<p>RAG 是 Retrieval-Augmented Generation，也就是检索增强生成。它让模型在回答或执行任务前，从外部知识库中检索相关材料，再基于检索内容生成答案。</p>
+<p>Agent 需要 RAG，是因为模型参数里的知识不一定新、不一定完整，也不一定包含企业内部知识。比如内部文档、代码仓库、历史需求、接口说明、故障复盘、项目规范，都不能只靠模型记忆。RAG 可以把这些外部信息动态带入上下文。</p>
+<p>追问：RAG 和长上下文模型是不是二选一？</p>
+<p>回答：不是。长上下文能放更多内容，但不代表应该把所有内容都塞进去。RAG 的价值是选择相关信息，减少噪音和成本。长上下文和 RAG 可以结合，RAG 负责召回，长上下文负责容纳更复杂的证据链。</p>
+<hr />
+<h3 id="q42-rag"><strong>Q4.2 · 标准 RAG 流程是什么？</strong><a class="headerlink" href="#q42-rag" title="Permanent link">&para;</a></h3>
+<p>标准流程通常是：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>文档采集
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>清洗和切分
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>向量化
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>建立索引
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>用户查询改写
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>检索 Top-K 文档
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>重排序
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>上下文拼接
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>模型生成
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>答案评估
+</code></pre></div>
+<p>在 Agent 场景里，RAG 还会和工具调用、记忆、状态结合。比如 Agent 先根据任务决定是否需要检索历史需求，再根据检索结果决定是否下钻 PRD、技术方案或交付 summary。</p>
+<p>如果面试官要求画架构，可以画成下面这条链路：</p>
+<pre class="mermaid"><code>flowchart LR
+  subgraph Offline["🟡 [离线] 索引构建"]
+    direction TB
+    Src[("📚 知识源&lt;br/&gt;文档/代码/工单&lt;br/&gt;Wiki/接口")]:::src
+    Clean["🧹 清洗&lt;br/&gt;去 HTML/模板"]:::off
+    Chunk["✂️ Chunking&lt;br/&gt;标题/AST/QA/表格"]:::off
+    Emb["🔢 Embedding&lt;br/&gt;BGE/e5/OpenAI"]:::off
+    Meta["🏷️ 元数据抽取&lt;br/&gt;路径/作者/ACL/时间"]:::off
+    VDB[("向量索引&lt;br/&gt;HNSW")]:::idx
+    KW[("关键词索引&lt;br/&gt;BM25")]:::idx
+    Graph[("图谱索引&lt;br/&gt;实体+关系")]:::idx
+    MetaDB[("元数据/ACL&lt;br/&gt;SQL/ES")]:::idx
+  end
+
+  subgraph Online["🔵 [在线] 检索 + 生成"]
+    direction TB
+    U(["👤 用户"]):::user
+    QR["✍️ Query Rewrite&lt;br/&gt;意图改写"]:::on
+    HyDE["🎭 HyDE&lt;br/&gt;假想答案"]:::on
+    VR["向量召回&lt;br/&gt;Top-50"]:::recall
+    KWR["关键词召回&lt;br/&gt;Top-50"]:::recall
+    GR["图谱召回&lt;br/&gt;多跳关系"]:::recall
+    Fuse["🔀 融合去重&lt;br/&gt;RRF/加权"]:::on
+    Rerank["⭐ Cross-Encoder&lt;br/&gt;Rerank Top-10"]:::rerank
+    ACL["🛡️ ACL 过滤"]:::guard
+    Sens["🔒 Sensitivity 脱敏"]:::guard
+    Ctx["📦 Context 拼接&lt;br/&gt;证据+来源"]:::on
+    Gen["🤖 LLM 生成&lt;br/&gt;引用证据"]:::gen
+    SC["✓ Self-Check&lt;br/&gt;Faithfulness"]:::on
+  end
+
+  subgraph Eval["🟢 [离线] 评估闭环"]
+    direction TB
+    MP["Context Precision"]:::eval
+    MR["Context Recall"]:::eval
+    MF["Faithfulness"]:::eval
+    MA["Answer Relevance"]:::eval
+    Dash["📊 Dashboard"]:::eval
+  end
+
+  Src ==&gt; Clean ==&gt; Chunk ==&gt; Emb
+  Chunk --&gt; Meta
+  Emb ==&gt; VDB
+  Chunk ==&gt; KW &amp; Graph
+  Meta ==&gt; MetaDB
+
+  U ==&gt; QR
+  QR --&gt; HyDE
+  QR &amp; HyDE ==&gt; VR
+  QR ==&gt; KWR &amp; GR
+  VDB --&gt; VR
+  KW --&gt; KWR
+  Graph --&gt; GR
+  VR &amp; KWR &amp; GR ==&gt; Fuse ==&gt; Rerank
+  MetaDB --&gt; ACL
+  Rerank ==&gt; ACL ==&gt; Sens ==&gt; Ctx ==&gt; Gen ==&gt; SC ==&gt; U
+  Gen -.-&gt; MP &amp; MR &amp; MF &amp; MA
+  MP &amp; MR &amp; MF &amp; MA --&gt; Dash
+
+  classDef src fill:#FFF3CD,stroke:#F5A623,color:#856404,stroke-width:2px
+  classDef off fill:#FFE8A1,stroke:#F5A623,color:#856404
+  classDef idx fill:#FFD43B,stroke:#F08C00,color:#333
+  classDef user fill:#2C3E50,stroke:#1a252f,color:#fff,stroke-width:2px
+  classDef on fill:#D4E9FF,stroke:#4A90E2,color:#1F4E8C
+  classDef recall fill:#A8D0FF,stroke:#4A90E2,color:#1F4E8C
+  classDef rerank fill:#7FB3F0,stroke:#1864AB,color:#fff,stroke-width:2px
+  classDef guard fill:#FFB3BA,stroke:#D0021B,color:#5C0009,stroke-width:1.5px
+  classDef gen fill:#4DABF7,stroke:#1864AB,color:#fff,stroke-width:2px
+  classDef eval fill:#D4F4DD,stroke:#27AE60,color:#0F5132</code></pre>
+<blockquote>
+<p>✂️ <strong>切分策略按类型选</strong>：技术文档按 H2/H3 · 代码按 AST · FAQ 按 Q/A 对 · 表格保留表头+主键 · 长文档父子 chunk
+⭐ <strong>为什么要 Rerank</strong>：向量检索快但粗，Cross-Encoder 慢但准。Top-50 粗召回 → Top-10 精排，显著提升 context precision
+🛡️ <strong>权限三道关</strong>：① 索引时存 ACL 元数据 ② 检索时按身份过滤候选 ③ 生成后检查输出是否泄露无权内容</p>
+</blockquote>
+<p>追问：RAG 中最容易出问题的环节是什么？</p>
+<p>回答：切分、召回和上下文拼接。切分不好会破坏语义，召回不好会找不到关键证据，拼接不好会让模型被无关内容干扰。</p>
+<hr />
+<h3 id="q43-rag-chunking"><strong>Q4.3 · RAG 的 chunking 怎么做？</strong><a class="headerlink" href="#q43-rag-chunking" title="Permanent link">&para;</a></h3>
+<p>Chunking 要根据文档类型设计，不能简单按固定字符数切。</p>
+<p>技术文档适合按标题层级切，保留章节路径。代码适合按函数、类、模块切。FAQ 适合按问答对切。表格适合保留表头和行语义。长文档可以用父子 chunk，父 chunk 保存章节摘要，子 chunk 保存具体细节。</p>
+<p>chunk 太小会丢上下文，chunk 太大召回不精准。一般需要在召回准确率、上下文完整性和 token 成本之间平衡。上下文工程资料里也提到，chunking 的价值在于把内容拆成可管理单元，提升召回并减少幻觉。 <a href="https://neo4j.com/blog/agentic-ai/context-engineering-tools/">Neo4j</a> <a href="https://weaviate.io/blog/context-engineering">Weaviate</a></p>
+<p>追问：如何处理表格和代码的 chunk？</p>
+<p>回答：表格要保留表头、单位和主键字段，不能只切单元格。代码要尽量按 AST 或符号级别切，比如函数、类、接口，而不是按固定长度硬切。</p>
+<hr />
+<h3 id="q44-rag-top-k"><strong>Q4.4 · RAG 中 Top-K 怎么选？</strong><a class="headerlink" href="#q44-rag-top-k" title="Permanent link">&para;</a></h3>
+<p>Top-K 不是越大越好。K 太小容易漏召回，K 太大容易引入噪音。通常可以先用较大的 K 做初召回，再用 reranker 重排，最后只放少量高相关片段进上下文。</p>
+<p>如果是问答场景，Top-K 可以小一些；如果是复杂分析或多跳推理，可以召回更多候选，再分阶段阅读。</p>
+<p>追问：如何动态调整 Top-K？</p>
+<p>回答：可以根据查询复杂度、检索分数分布、文档类型和上下文预算动态调整。如果最高分和后续分数差距很大，可以少取；如果分数接近，说明不确定性高，可以多取并重排。</p>
+<hr />
+<h3 id="q45-hybrid-search"><strong>Q4.5 · 什么是 Hybrid Search？</strong><a class="headerlink" href="#q45-hybrid-search" title="Permanent link">&para;</a></h3>
+<p>Hybrid Search 是把向量检索和关键词检索结合起来。</p>
+<p>向量检索擅长语义相似，比如用户说“员工离职资产回收”，它能找到语义相关文档。关键词检索擅长精确匹配，比如工单号、接口名、错误码、函数名、配置项。企业知识库和代码库里，经常同时需要语义召回和精确匹配，所以 Hybrid Search 很常见。</p>
+<p>追问：Hybrid Search 怎么融合分数？</p>
+<p>回答：可以用加权融合、RRF 排名融合，或者先分别召回候选，再交给 reranker 重排。具体方式要看业务场景和评估结果。</p>
+<hr />
+<h3 id="q46-rerank-rag-rerank"><strong>Q4.6 · 什么是 rerank？为什么 RAG 需要 rerank？</strong><a class="headerlink" href="#q46-rerank-rag-rerank" title="Permanent link">&para;</a></h3>
+<p>Rerank 是对初召回结果重新排序。向量检索返回的 Top-K 不一定真正最适合回答问题，reranker 会结合 query 和文档内容做更细粒度匹配，把最有用的内容排到前面。</p>
+<p>在企业 RAG 里，rerank 很重要。因为知识库文档多、相似内容多，初召回经常会把看起来相关但实际没用的内容排上来。rerank 能提高 context precision，减少模型读到噪音。</p>
+<p>追问：rerank 会带来什么代价？</p>
+<p>回答：增加延迟和计算成本。所以通常不会对全量文档 rerank，而是先召回几十条，再重排前几十条。</p>
+<hr />
+<h3 id="q47-query-rewrite"><strong>Q4.7 · 什么是 query rewrite？</strong><a class="headerlink" href="#q47-query-rewrite" title="Permanent link">&para;</a></h3>
+<p>Query rewrite 是对用户问题进行改写，让它更适合检索。</p>
+<p>用户的问题可能很口语化，比如“这个之前是不是做过”，直接检索效果很差。系统可以结合当前项目、会话状态，把它改写成“检索历史需求中与当前接口迁移、CMDB、EAM 兜底相关的 PRD 和 summary”。</p>
+<p>追问：query rewrite 有风险吗？</p>
+<p>回答：有。改写可能偏离用户原意。所以复杂场景可以生成多个查询，或者保留原始 query 和改写 query 同时检索。</p>
+<hr />
+<h3 id="q48-hyde"><strong>Q4.8 · 什么是 HyDE？</strong><a class="headerlink" href="#q48-hyde" title="Permanent link">&para;</a></h3>
+<p>HyDE 是 Hypothetical Document Embeddings。它先让模型根据问题生成一个假想答案或假想文档，再用这个假想文档去做向量检索。这样可以把短问题扩展成更接近目标文档的语义表达。</p>
+<p>它适合用户 query 很短、语义不明确的情况。</p>
+<p>追问：HyDE 的风险是什么？</p>
+<p>回答：假想文档可能引入错误方向。如果模型生成的假想答案偏了，检索也会偏。所以 HyDE 要结合 rerank、原始 query 检索和证据校验。</p>
+<hr />
+<h3 id="q49-multi-hop-rag"><strong>Q4.9 · 什么是 Multi-hop RAG？</strong><a class="headerlink" href="#q49-multi-hop-rag" title="Permanent link">&para;</a></h3>
+<p>Multi-hop RAG 是多跳检索。问题不能通过一次检索回答，需要先找到一个线索，再根据线索继续检索。</p>
+<p>比如问“某项目上线前引用的那个依赖是否在后续故障复盘中出现过”，需要先检索项目上线记录，再找到依赖名，再检索故障复盘。这种任务很适合 Agentic RAG，由 Agent 决定下一步检索什么。</p>
+<p>追问：Multi-hop RAG 怎么防止跑偏？</p>
+<p>回答：每一跳都要保存证据和中间结论，避免模型凭空跳转。可以要求每一跳输出 query、证据、结论和下一跳原因。</p>
+<hr />
+<h3 id="q410-graphrag"><strong>Q4.10 · 什么是 GraphRAG？它解决什么问题？</strong><a class="headerlink" href="#q410-graphrag" title="Permanent link">&para;</a></h3>
+<p>GraphRAG 是把知识组织成图结构，让系统能基于实体和关系进行检索与推理。普通向量 RAG 擅长语义相似，但对复杂关系问题不一定好，比如“哪些员工在某项目公开前接触过相关材料”。这种问题需要实体、时间、关系和路径推理，知识图谱会更适合。</p>
+<p>公开面试题里也提到，合规、金融、企业知识分析这类场景，普通向量检索可能找不到多实体之间的隐含关系，而 GraphRAG 可以通过关系遍历和证据链回答问题。 <a href="https://www.coprep.ai/blog/top-agentic-ai-interview-questions-for-2026-beyond-the-models">Coprep</a></p>
+<p>追问：GraphRAG 的缺点是什么？</p>
+<p>回答：构建成本高，需要实体抽取、关系抽取、图谱维护和权限控制。数据质量不好时，图谱推理也会出错。</p>
+<hr />
+<h3 id="q411-rag"><strong>Q4.11 · RAG 怎么评估？</strong><a class="headerlink" href="#q411-rag" title="Permanent link">&para;</a></h3>
+<p>RAG 评估不能只看最终答案，还要看检索质量和生成质量。</p>
+<p>常见指标包括：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Context Precision：检索内容是否相关
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Context Recall：需要的信息是否被检索到
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Faithfulness：回答是否忠实于检索内容
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Answer Relevance：回答是否解决用户问题
+</code></pre></div>
+<p>公开资料里也提到，RAGAS 等评估框架常用 faithfulness、answer relevance、context precision、context recall 这些维度评估 RAG 管道。 <a href="https://towardsai.net/p/machine-learning/40-generative-ai-interview-questions-that-actually-get-asked-in-2026-with-answers">Towards AI</a> <a href="https://www.datacamp.com/blog/rag-interview-questions">DataCamp</a></p>
+<p>追问：如果答案错了，怎么判断是检索错还是生成错？</p>
+<p>回答：看检索上下文里是否包含正确证据。如果没有，是召回问题；如果有但模型回答错，是生成或上下文理解问题；如果有一堆无关证据干扰，是 precision 问题。</p>
+<hr />
+<hr />
+<h3 id="agentic-rag-self-rag-3"><strong>【追问扩展】Agentic RAG / Self-RAG 3 题</strong><a class="headerlink" href="#agentic-rag-self-rag-3" title="Permanent link">&para;</a></h3>
+<h3 id="q412-rag-agentic-rag"><strong>Q4.12 · 普通 RAG 和 Agentic RAG 有什么区别？</strong><a class="headerlink" href="#q412-rag-agentic-rag" title="Permanent link">&para;</a></h3>
+<p>普通 RAG 通常是一次检索加一次生成，流程比较固定。</p>
+<p>Agentic RAG 让 Agent 自己决定是否检索、检索什么、是否需要二次检索、是否需要调用其他工具验证。它适合复杂问题、多跳问题、需要文件分析或需要外部工具的任务。</p>
+<p>比如用户问“这个需求是否和历史某个迁移项目类似”，普通 RAG 可能召回几篇文档就回答。Agentic RAG 会先检索历史 summary，再判断是否需要下钻 PRD 或技术方案，再比较影响面和风险点。</p>
+<p>追问：Agentic RAG 的风险是什么？</p>
+<p>回答：流程更复杂，成本更高，也更容易循环检索或跑偏。所以要有停止条件、最大检索轮次、证据记录和评估机制。</p>
+<hr />
+<h3 id="q413-self-rag-corrective-rag"><strong>Q4.13 · 什么是 Self-RAG 或 Corrective RAG？</strong><a class="headerlink" href="#q413-self-rag-corrective-rag" title="Permanent link">&para;</a></h3>
+<p>Self-RAG 强调模型对自己的检索和回答进行反思，比如判断是否需要检索、检索结果是否足够、答案是否被证据支持。</p>
+<p>Corrective RAG 强调当检索结果质量不够时，系统进行纠错，比如重新检索、改写查询、换检索源，或者拒答。</p>
+<p>面试里不一定要讲具体论文细节，重点是表达：RAG 不能只做一次召回，要能检测召回质量，并在证据不足时修正。</p>
+<p>追问：什么时候应该拒答？</p>
+<p>回答：当检索不到可靠证据、证据互相冲突、用户问题超出权限，或者回答会涉及敏感操作时，应该拒答或请求更多信息。</p>
+<hr />
+<h3 id="q414-rag"><strong>Q4.14 · RAG 如何处理权限问题？</strong><a class="headerlink" href="#q414-rag" title="Permanent link">&para;</a></h3>
+<p>企业 RAG 必须做权限过滤。不能因为文档进了向量库，任何用户都能检索到。</p>
+<p>常见做法是索引时保存 ACL 信息，检索时按用户身份过滤；或者先按权限过滤候选文档，再做向量检索。回答时也要避免泄露用户无权访问的片段。</p>
+<p>追问：如果用户无权限但模型知道答案怎么办？</p>
+<p>回答：系统不应该输出无权限内容。即使模型从其他上下文推断出来，也要按权限策略拒绝或泛化回答。</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Built with MkDocs Material
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

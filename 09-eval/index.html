@@ -1,0 +1,2414 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图">
+      
+      
+      
+      
+        <link rel="prev" href="../08-tools/">
+      
+      
+        <link rel="next" href="../10-coding/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>📊 评估体系 - Agent 工程师面试总册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Agent 工程师面试总册" class="md-header__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent 工程师面试总册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              📊 评估体系
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📑 导读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💼 项目经历
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧠 Agent 基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-runtime/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏗️ Runtime 架构
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-context/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📦 上下文工程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-rag/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔍 RAG 与检索
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-memory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💾 记忆系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-compaction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🗜️ 上下文压缩
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔧 工具与沙箱
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📊 评估体系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-coding/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💻 Coding Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-training/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎓 训练与模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-protocols/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔌 协议与生态
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-multi-agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🤝 Multi-Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-edge/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📱 端侧/多模态/高并发
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-sysdesign/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏛️ 系统设计
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../16-interview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎤 面试表达
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Agent 工程师面试总册" class="md-nav__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agent 工程师面试总册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💼 项目经历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Agent 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Runtime 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 记忆系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-compaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 工具与沙箱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8 章 · 评估体系】评估难点 + 指标矩阵
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8 章 · 评估体系】评估难点 + 指标矩阵">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.1 · 为什么需要智能体评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q82-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.2 · Agent 评估面临哪些挑战？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q83-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3 · 常见 Agent 评估指标有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8.3 · BFCL】函数调用评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8.3 · BFCL】函数调用评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q831-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.1 · BFCL 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q832-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.2 · BFCL 的四类任务是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q833-bfcl-ast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.3 · BFCL 为什么使用 AST 匹配？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q834-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.4 · BFCL 的准确率怎么计算？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q835-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.5 · 如果让你实现一个 BFCL 评估器，你会怎么设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q836-bfcl-ast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.6 · BFCL AST 匹配伪代码（深度补充）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q837-bfcl-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.7 · BFCL 五大类别准确率参考（2025 公开数据）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q838-gaia-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.8 · GAIA Level 真实样例（深度补充）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q839" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.9 · 准精确匹配实现要点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8.4 · GAIA】通用任务评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8.4 · GAIA】通用任务评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q841-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.1 · GAIA 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q842-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.2 · GAIA 的三个难度级别有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q843-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.3 · GAIA 为什么使用准精确匹配？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q844-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.4 · GAIA 的评估流程是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-llm-judge-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8.5 · LLM Judge / Win Rate】开放生成评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8.5 · LLM Judge / Win Rate】开放生成评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q851-llm-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.1 · 什么是 LLM Judge？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q852-llm-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.2 · LLM Judge 有什么风险？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q853-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.3 · 什么是 Win Rate 评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q854-llm-judge-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.4 · LLM Judge 和 Win Rate 的区别是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】评估观测补充 5 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q855-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.5 · Agent 应该怎么做线上观测？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q856-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.6 · Agent 失败如何归因？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q857-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.7 · Agent 评估集怎么构建？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q858-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.8 · 如何评估 Agent 的工具调用能力？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q859-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.9 · 如何评估 Agent 的长任务能力？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Coding Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 协议与生态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📱 端侧/多模态/高并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sysdesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ 系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8 章 · 评估体系】评估难点 + 指标矩阵
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8 章 · 评估体系】评估难点 + 指标矩阵">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.1 · 为什么需要智能体评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q82-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.2 · Agent 评估面临哪些挑战？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q83-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3 · 常见 Agent 评估指标有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8.3 · BFCL】函数调用评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8.3 · BFCL】函数调用评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q831-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.1 · BFCL 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q832-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.2 · BFCL 的四类任务是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q833-bfcl-ast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.3 · BFCL 为什么使用 AST 匹配？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q834-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.4 · BFCL 的准确率怎么计算？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q835-bfcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.5 · 如果让你实现一个 BFCL 评估器，你会怎么设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q836-bfcl-ast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.6 · BFCL AST 匹配伪代码（深度补充）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q837-bfcl-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.7 · BFCL 五大类别准确率参考（2025 公开数据）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q838-gaia-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.8 · GAIA Level 真实样例（深度补充）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q839" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.3.9 · 准精确匹配实现要点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8.4 · GAIA】通用任务评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8.4 · GAIA】通用任务评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q841-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.1 · GAIA 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q842-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.2 · GAIA 的三个难度级别有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q843-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.3 · GAIA 为什么使用准精确匹配？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q844-gaia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.4.4 · GAIA 的评估流程是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-llm-judge-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 8.5 · LLM Judge / Win Rate】开放生成评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 8.5 · LLM Judge / Win Rate】开放生成评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q851-llm-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.1 · 什么是 LLM Judge？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q852-llm-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.2 · LLM Judge 有什么风险？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q853-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.3 · 什么是 Win Rate 评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q854-llm-judge-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.4 · LLM Judge 和 Win Rate 的区别是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】评估观测补充 5 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q855-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.5 · Agent 应该怎么做线上观测？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q856-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.6 · Agent 失败如何归因？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q857-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.7 · Agent 评估集怎么构建？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q858-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.8 · 如何评估 Agent 的工具调用能力？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q859-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8.5.9 · 如何评估 Agent 的长任务能力？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="8">📊 第 8 章 · 评估体系<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
+<h2 id="8_1"><strong>【第 8 章 · 评估体系】评估难点 + 指标矩阵</strong><a class="headerlink" href="#8_1" title="Permanent link">&para;</a></h2>
+<h3 id="q81"><strong>Q8.1 · 为什么需要智能体评估？</strong><a class="headerlink" href="#q81" title="Permanent link">&para;</a></h3>
+<p>因为 Agent 的能力不能靠感觉判断。我们需要知道它是否具备预期能力，在不同任务上表现如何，和其他方案相比有没有提升，是否可靠到可以上线。</p>
+<p>评估能把“感觉不错”变成具体指标，比如工具调用准确率、任务完成率、错误率、响应时间、token 使用量、测试通过率等。</p>
+<p>追问：Agent 评估和传统软件测试有什么不同？</p>
+<p>答：传统软件测试通常有确定输入输出，而 Agent 输出不确定。同一个问题可能有多个正确答案，不同任务需要不同评价标准，而且评估本身可能需要大量模型调用和工具调用，成本更高。</p>
+<hr />
+<h3 id="q82-agent"><strong>Q8.2 · Agent 评估面临哪些挑战？</strong><a class="headerlink" href="#q82-agent" title="Permanent link">&para;</a></h3>
+<p>主要有三类。</p>
+<p>第一，输出不确定。比如“42”“答案是 42”“42.0”都可能正确。</p>
+<p>第二，评估标准多样。工具调用要看函数名和参数，问答要看语义，网页任务要看是否完成操作，生成数据要看质量。</p>
+<p>第三，评估成本高。跑大量样本需要 API 调用、工具执行、文件处理，可能耗时也耗钱。</p>
+<p>追问：怎么解决这些挑战？</p>
+<p>答：可以使用标准 benchmark、分任务设计指标、小样本快速评估、LLM Judge、人工抽检、分层评估和持续评估系统。</p>
+<hr />
+<h3 id="q83-agent"><strong>Q8.3 · 常见 Agent 评估指标有哪些？</strong><a class="headerlink" href="#q83-agent" title="Permanent link">&para;</a></h3>
+<p>常见指标包括：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>准确性</td>
+<td>Accuracy、Exact Match、F1</td>
+</tr>
+<tr>
+<td>工具调用</td>
+<td>Function Call Accuracy、AST Match Rate</td>
+</tr>
+<tr>
+<td>效率</td>
+<td>Response Time、Token Usage、Tool Call Count</td>
+</tr>
+<tr>
+<td>鲁棒性</td>
+<td>Error Rate、Failure Recovery</td>
+</tr>
+<tr>
+<td>任务完成</td>
+<td>Task Completion Rate</td>
+</tr>
+<tr>
+<td>代码质量</td>
+<td>Test Pass Rate、Lint Pass Rate、Patch Accept Rate</td>
+</tr>
+<tr>
+<td>生成质量</td>
+<td>LLM Judge Score、Win Rate</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>Dangerous Action Block Rate</td>
+</tr>
+</tbody>
+</table>
+<p>追问：只看准确率够吗？</p>
+<p>答：不够。Agent 是任务执行系统，还要看效率、稳定性、安全性、成本和可恢复性。一个准确率高但调用工具极慢、成本极高、经常越权的 Agent 也不适合上线。</p>
+<hr />
+<h2 id="83-bfcl"><strong>【第 8.3 · BFCL】函数调用评估</strong><a class="headerlink" href="#83-bfcl" title="Permanent link">&para;</a></h2>
+<h3 id="q831-bfcl"><strong>Q8.3.1 · BFCL 是什么？</strong><a class="headerlink" href="#q831-bfcl" title="Permanent link">&para;</a></h3>
+<p>BFCL 全称 Berkeley Function Calling Leaderboard，是一个评估模型或 Agent 函数调用能力的 benchmark。它主要考察 Agent 是否能理解用户意图、选择正确函数、填写正确参数，并判断是否需要调用函数。</p>
+<p>BFCL 包含 simple、multiple、parallel、irrelevance 等类别，覆盖单函数调用、多函数调用、并行调用和不相关场景。</p>
+<p>追问：BFCL 适合评估什么场景？</p>
+<p>答：适合评估工具调用准确性，尤其是 API 调用、函数调用、参数抽取等能力。</p>
+<hr />
+<h3 id="q832-bfcl"><strong>Q8.3.2 · BFCL 的四类任务是什么？</strong><a class="headerlink" href="#q832-bfcl" title="Permanent link">&para;</a></h3>
+<p>Simple 是单函数调用，比如查北京天气，只需要调用一个 <code>get_weather</code>。</p>
+<p>Multiple 是多函数调用，比如同时查北京和上海天气。</p>
+<p>Parallel 是并行调用不同工具，比如同时查天气和汇率。</p>
+<p>Irrelevance 是判断不需要调用工具，比如用户只是打招呼，Agent 应该直接回答，而不是强行调用函数。</p>
+<p>这题可以补一个对比表，避免只背四个名词：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>考察点</th>
+<th>常见错误</th>
+<th>评价重点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>单个函数选择和参数填写</td>
+<td>函数选错、参数漏填</td>
+<td>函数名和参数键值是否匹配</td>
+</tr>
+<tr>
+<td>Multiple</td>
+<td>多个同类函数调用</td>
+<td>漏调一个、合并错</td>
+<td>调用数量和每次参数是否正确</td>
+</tr>
+<tr>
+<td>Parallel</td>
+<td>不同工具并行调用</td>
+<td>顺序混乱、工具混用</td>
+<td>工具选择、参数、并行意图</td>
+</tr>
+<tr>
+<td>Irrelevance</td>
+<td>判断不该调用工具</td>
+<td>为了调用而调用</td>
+<td>能否拒绝无意义工具调用</td>
+</tr>
+</tbody>
+</table>
+<p>追问：为什么 irrelevance 重要？</p>
+<p>答：因为好的 Agent 不只是会调用工具，还要知道什么时候不该调用。滥用工具会增加成本、延迟和错误风险。</p>
+<hr />
+<h3 id="q833-bfcl-ast"><strong>Q8.3.3 · BFCL 为什么使用 AST 匹配？</strong><a class="headerlink" href="#q833-bfcl-ast" title="Permanent link">&para;</a></h3>
+<p>因为简单字符串匹配太死板。比如：</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">get_weather</span><span class="p">(</span><span class="n">city</span><span class="o">=</span><span class="s2">&quot;Beijing&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;celsius&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">get_weather</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;celsius&quot;</span><span class="p">,</span> <span class="n">city</span><span class="o">=</span><span class="s2">&quot;Beijing&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>这两个字符串不同，但语义相同。AST 匹配会把函数调用解析成语法树，比较函数名、参数集合和参数值是否等价，从而忽略参数顺序、格式差异和部分等价表达式。</p>
+<p>追问：AST 匹配的核心条件是什么？</p>
+<p>答：函数名必须一致，参数键值对集合相等，参数值语义等价。多函数调用时，还要匹配函数调用数量和每个函数调用内容。</p>
+<hr />
+<h3 id="q834-bfcl"><strong>Q8.3.4 · BFCL 的准确率怎么计算？</strong><a class="headerlink" href="#q834-bfcl" title="Permanent link">&para;</a></h3>
+<p>准确率是 AST 匹配成功的样本比例：</p>
+<p>$$
+Accuracy = \frac{正确样本数}{总样本数}
+$$</p>
+<p>如果 100 个样本里有 85 个函数调用和标准答案匹配，准确率就是 85%。</p>
+<p>也可以按类别统计，比如 simple accuracy、multiple accuracy、parallel accuracy，帮助分析模型在哪类工具调用上薄弱。</p>
+<p>追问：加权准确率有什么意义？</p>
+<p>答：不同类别难度不同，可以给复杂任务更高权重，避免模型只在简单任务上表现好却总体看起来不错。</p>
+<hr />
+<h3 id="q835-bfcl"><strong>Q8.3.5 · 如果让你实现一个 BFCL 评估器，你会怎么设计？</strong><a class="headerlink" href="#q835-bfcl" title="Permanent link">&para;</a></h3>
+<p>通用做法是拆 4 个组件，职责清晰、可独立测试：</p>
+<pre class="mermaid"><code>classDiagram
+  class Dataset {
+    +load(path)
+    +iter_samples()
+    +get_ground_truth(id)
+    -categories: list
+  }
+  class Evaluator {
+    +run(agent, dataset)
+    -build_prompt(sample)
+    -extract_call(output)
+    -ast_match(pred, gold)
+  }
+  class Metrics {
+    +accuracy()
+    +ast_match_rate()
+    +category_accuracy()
+    +error_rate()
+  }
+  class EvaluationTool {
+    +evaluate(agent_id)
+    +report() Report
+  }
+
+  EvaluationTool --&gt; Dataset : 加载
+  EvaluationTool --&gt; Evaluator : 执行
+  Evaluator --&gt; Dataset : 读样本
+  Evaluator --&gt; Metrics : 计算指标
+  EvaluationTool --&gt; Metrics : 产出报告</code></pre>
+<p><strong>各组件职责</strong>：
+- <strong>Dataset</strong>：加载 BFCL 数据（question / function / ground_truth），支持按类别迭代
+- <strong>Evaluator</strong>：构造 prompt → 调 Agent → 从输出里提取 function_call → AST 匹配
+- <strong>Metrics</strong>：accuracy / AST match rate / category-wise accuracy / error rate
+- <strong>EvaluationTool</strong>：把以上组合成一键评估，可被 Agent 或 CI/CD 直接调用</p>
+<p><strong>整体流程</strong>：加载数据集 → 构造提示词 → 调用 Agent → 提取函数调用 → AST 匹配 ground truth → 计算准确率 → 生成报告。</p>
+<p><strong>追问 1：为什么要封装成 Tool？</strong></p>
+<blockquote>
+<p>封装后评估能力可以被 Agent 或 workflow 直接调用，也容易集成到 CI/CD 或自动评估流水线里。</p>
+</blockquote>
+<p><strong>追问 2：函数调用提取为什么难？</strong></p>
+<blockquote>
+<p>模型输出格式不稳定——可能是 JSON、代码块、自然语言混合。评估器要能从不同格式中可靠提取函数名和参数。生产实现通常用多策略 fallback：先 JSON.parse → 失败则 ast.parse → 再失败用正则抓 <code>func_name(...)</code> 模式。</p>
+</blockquote>
+<hr />
+<h3 id="q836-bfcl-ast"><strong>Q8.3.6 · BFCL AST 匹配伪代码（深度补充）</strong><a class="headerlink" href="#q836-bfcl-ast" title="Permanent link">&para;</a></h3>
+<p>面试官如果让你白板写 AST 匹配，可以这样（用 <code>ast.literal_eval</code> 安全求值字面量，不要用动态求值函数）：</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse_call</span><span class="p">(</span><span class="n">call_str</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;把 &#39;get_weather(city=&quot;北京&quot;, unit=&quot;celsius&quot;)&#39; 解析成 AST Call 节点&quot;&quot;&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">call_str</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;eval&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;not a function call&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">return</span> <span class="n">tree</span><span class="o">.</span><span class="n">body</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">safe_value</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;只接受字面量（str/num/list/dict/bool/None），杜绝任意代码&quot;&quot;&quot;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">return</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">call_equiv</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">gold</span><span class="p">):</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="c1"># 1. 函数名必须一致</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">if</span> <span class="n">ast</span><span class="o">.</span><span class="n">unparse</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">func</span><span class="p">)</span> <span class="o">!=</span> <span class="n">ast</span><span class="o">.</span><span class="n">unparse</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="c1"># 2. 收集 keyword arguments</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">pred_kw</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span> <span class="n">safe_value</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">pred</span><span class="o">.</span><span class="n">keywords</span><span class="p">}</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="n">gold_kw</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span> <span class="n">safe_value</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">gold</span><span class="o">.</span><span class="n">keywords</span><span class="p">}</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="c1"># 3. 参数键集合相等</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">pred_kw</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">gold_kw</span><span class="p">):</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="c1"># 4. 每个值语义等价</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">gold_kw</span><span class="p">:</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">value_equiv</span><span class="p">(</span><span class="n">pred_kw</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">gold_kw</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>            <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="k">def</span><span class="w"> </span><span class="nf">value_equiv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="c1"># 数字：1 == 1.0 == &quot;1&quot;（按 ground truth 类型归一化）</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>            <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="c1"># 字符串：去前后空格，大小写视任务而定</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="c1"># 列表：顺序无关时排序比较</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+</code></pre></div>
+<h3 id="q837-bfcl-2025"><strong>Q8.3.7 · BFCL 五大类别准确率参考（2025 公开数据）</strong><a class="headerlink" href="#q837-bfcl-2025" title="Permanent link">&para;</a></h3>
+<p>记住这几个量级，回答时更有说服力：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>顶级模型准确率</th>
+<th>难点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>90%+</td>
+<td>几乎都能做对</td>
+</tr>
+<tr>
+<td>Multiple</td>
+<td>80-90%</td>
+<td>容易漏调一个</td>
+</tr>
+<tr>
+<td>Parallel</td>
+<td>70-85%</td>
+<td>并行意图判断、顺序控制</td>
+</tr>
+<tr>
+<td>Multi-Turn</td>
+<td>60-80%</td>
+<td>跨轮上下文保持</td>
+</tr>
+<tr>
+<td>Irrelevance</td>
+<td>70-95%</td>
+<td>模型倾向"为了调用而调用"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Irrelevance 类</strong>最考验工程实现，比如用户问"今天天气怎么样"但没说城市，好的 Agent 应该追问而不是瞎调 <code>get_weather(city="")</code>。</p>
+<hr />
+<h3 id="q838-gaia-level"><strong>Q8.3.8 · GAIA Level 真实样例（深度补充）</strong><a class="headerlink" href="#q838-gaia-level" title="Permanent link">&para;</a></h3>
+<p>GAIA 官方公布的样例：</p>
+<p><strong>Level 1（基础，单工具或简单推理）</strong></p>
+<blockquote>
+<p>"What is the capital of France?"
+答："Paris"
+难点：几乎没有，主要测能否给简洁答案</p>
+</blockquote>
+<p><strong>Level 2（多步，需要工具组合）</strong></p>
+<blockquote>
+<p>"What is the surname of the equine veterinarian mentioned in 1.E Exercises from the 2023 Pearson edition of the chemistry textbook for openstax?"
+答："Louvrier"
+难点：要找到对应教材 PDF → 跳到指定章节 → 提取人名</p>
+</blockquote>
+<p><strong>Level 3（复杂，多文件+多跳推理）</strong></p>
+<blockquote>
+<p>"In the year 2022, between what days were the Magic the Gathering: Phyrexia: All Will Be One Pre-Release events held? Answer in the format of MM-DD to MM-DD."
+答："01-28 to 02-03"
+难点：要搜索 → 跨多个来源验证 → 格式化输出</p>
+</blockquote>
+<p>GAIA 顶级分数（2025）：
+- GPT-4 + 工具：~30%
+- 顶级 Agent 框架（如 Magnetic-One）：~38%
+- 人类基线：~92%</p>
+<p><strong>为什么 Agent 离人类还有这么大差距</strong>？关键失败点：
+1. 多步推理中间一步错就全错（错误累积）
+2. 工具返回大量噪声时模型抓不住关键
+3. 最终答案格式不符合要求（推理对了但输出格式错被判错）
+4. 需要跨文件/跨网页交叉验证时容易满足于第一个看到的答案</p>
+<hr />
+<h3 id="q839"><strong>Q8.3.9 · 准精确匹配实现要点</strong><a class="headerlink" href="#q839" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">quasi_exact_match</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">gold</span><span class="p">):</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="c1"># 1. 去前后空格</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="c1"># 2. 大小写归一化（视任务而定，人名地名要保留）</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="c1"># s = s.lower()  # 谨慎开启</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="c1"># 3. 去末尾标点</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[.,!?;:]+$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="c1"># 4. 数字归一化（&quot;42.0&quot; -&gt; &quot;42&quot;, &quot;1,000&quot; -&gt; &quot;1000&quot;）</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;,(\d</span><span class="si">{3}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^\d+\.0+$&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="c1"># 5. 去常见前缀</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;The answer is &quot;</span><span class="p">,</span> <span class="s2">&quot;Answer: &quot;</span><span class="p">,</span> <span class="s2">&quot;It is &quot;</span><span class="p">]:</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>            <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):]</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="k">return</span> <span class="n">s</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="k">return</span> <span class="n">normalize</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span> <span class="o">==</span> <span class="n">normalize</span><span class="p">(</span><span class="n">gold</span><span class="p">)</span>
+</code></pre></div>
+<p>追问：为什么 GAIA 不直接用 LLM Judge？</p>
+<p>答：成本高、不稳定、对客观题（"哪一天"、"谁"、"多少"）会引入额外噪声。GAIA 设计成"答案唯一可判定"，准精确匹配就够。LLM Judge 更适合开放生成（论文摘要、代码解释）这类没有唯一答案的任务。</p>
+<hr />
+<h2 id="84-gaia"><strong>【第 8.4 · GAIA】通用任务评估</strong><a class="headerlink" href="#84-gaia" title="Permanent link">&para;</a></h2>
+<h3 id="q841-gaia"><strong>Q8.4.1 · GAIA 是什么？</strong><a class="headerlink" href="#q841-gaia" title="Permanent link">&para;</a></h3>
+<p>GAIA 是 General AI Assistants benchmark，评估通用 AI 助手在真实世界任务中的综合能力。它包含 466 个真实世界问题，分为 Level 1、Level 2、Level 3 三个难度级别。</p>
+<p>GAIA 不只考工具调用，还考多步推理、文件处理、网页浏览、知识整合、多模态理解和最终答案提取。</p>
+<p>追问：GAIA 和 BFCL 的区别是什么？</p>
+<p>答：BFCL 重点看函数调用是否正确，输出是工具调用；GAIA 重点看真实任务是否解决，输出是最终答案。BFCL 更像工具调用考试，GAIA 更像综合应用题。</p>
+<hr />
+<h3 id="q842-gaia"><strong>Q8.4.2 · GAIA 的三个难度级别有什么区别？</strong><a class="headerlink" href="#q842-gaia" title="Permanent link">&para;</a></h3>
+<p>Level 1 通常是基础任务，可能只需要一步查询或简单推理。</p>
+<p>Level 2 需要多步操作，比如搜索网页、读取文件、整合信息。</p>
+<p>Level 3 是复杂任务，可能需要多次搜索、跨来源验证、文件分析和复杂推理。</p>
+<p>追问：GAIA 为什么适合评估通用助手？</p>
+<p>答：因为它的问题更接近真实用户任务，不只是单点能力，而是考察 Agent 是否能综合使用工具和推理能力完成任务。</p>
+<hr />
+<h3 id="q843-gaia"><strong>Q8.4.3 · GAIA 为什么使用准精确匹配？</strong><a class="headerlink" href="#q843-gaia" title="Permanent link">&para;</a></h3>
+<p>因为最终答案可能有不同表达方式。比如标准答案是“42”，模型可能输出“The answer is 42.” 或 “42.0”。严格字符串匹配会误判。</p>
+<p>准精确匹配会先对答案归一化，比如去掉多余空格、统一大小写、处理标点和数字格式，再进行匹配。</p>
+<p>追问：准精确匹配有什么局限？</p>
+<p>答：它对语义等价但表达差异大的答案处理有限。比如同义表达、复杂句子、单位换算、近似答案，可能需要更智能的语义匹配或 LLM Judge。</p>
+<hr />
+<h3 id="q844-gaia"><strong>Q8.4.4 · GAIA 的评估流程是什么？</strong><a class="headerlink" href="#q844-gaia" title="Permanent link">&para;</a></h3>
+<p>流程是：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>加载 GAIA 数据集
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>读取问题和附件
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>调用 Agent 完成任务
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>提取最终答案
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>归一化预测答案和标准答案
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>准精确匹配
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>按 Level 统计准确率
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>生成报告
+</code></pre></div>
+<pre class="mermaid"><code>flowchart LR
+  Load([📚 加载 GAIA 数据集]):::start
+  Read[📖 读取问题+附件&lt;br/&gt;PDF/图片/CSV]:::input
+  Run[🤖 调用 Agent&lt;br/&gt;多步推理+工具]:::agent
+  Extract[🎯 提取最终答案&lt;br/&gt;从 Thought 链中找]:::extract
+  Norm[🧹 归一化&lt;br/&gt;大小写/标点/数字格式]:::norm
+  Match{准精确&lt;br/&gt;匹配?}:::gate
+  Pass[✅ 正确]:::pass
+  Fail[❌ 错误]:::fail
+  Stat[📊 按 Level 统计&lt;br/&gt;L1/L2/L3 分别准确率]:::stat
+  Report([📄 生成报告]):::done
+
+  Load ==&gt; Read ==&gt; Run ==&gt; Extract ==&gt; Norm ==&gt; Match
+  Match --&gt;|"✅"| Pass --&gt; Stat
+  Match -.-&gt;|"❌"| Fail --&gt; Stat
+  Stat ==&gt; Report
+
+  classDef start fill:#2C3E50,stroke:#1a252f,color:#fff,stroke-width:2px
+  classDef input fill:#FFF3CD,stroke:#F5A623,color:#856404
+  classDef agent fill:#D4E9FF,stroke:#4A90E2,color:#1F4E8C,stroke-width:2px
+  classDef extract fill:#FFE0E6,stroke:#E63946,color:#7A1D2A
+  classDef norm fill:#FFE0B3,stroke:#FF8C00,color:#7A4500
+  classDef gate fill:#FFD43B,stroke:#F08C00,color:#333,stroke-width:2px
+  classDef pass fill:#52C788,stroke:#0F5132,color:#fff
+  classDef fail fill:#FF6B6B,stroke:#C92A2A,color:#fff
+  classDef stat fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C
+  classDef done fill:#27AE60,stroke:#0F5132,color:#fff,stroke-width:2px</code></pre>
+<p>追问：GAIA 评估时最容易出错的地方是什么？</p>
+<p>答：最终答案提取。Agent 可能推理过程正确，但最终输出太啰嗦，导致匹配失败。所以需要明确要求输出 final answer，或者设计答案提取器。</p>
+<hr />
+<h2 id="85-llm-judge-win-rate"><strong>【第 8.5 · LLM Judge / Win Rate】开放生成评估</strong><a class="headerlink" href="#85-llm-judge-win-rate" title="Permanent link">&para;</a></h2>
+<h3 id="q851-llm-judge"><strong>Q8.5.1 · 什么是 LLM Judge？</strong><a class="headerlink" href="#q851-llm-judge" title="Permanent link">&para;</a></h3>
+<p>LLM Judge 是用大语言模型作为评委，对生成内容进行评分或判断。它常用于评估开放式生成任务，比如题目生成、回答质量、代码解释、文档质量等。</p>
+<p>在我们之前讨论的数据生成质量评估里，LLM Judge 用来评估 AIME 风格题目，从正确性、清晰度、难度匹配、完整性等维度打分。</p>
+<p>追问：LLM Judge 相比规则评估有什么优势？</p>
+<p>答：它能处理开放式内容，给出多维度评分和理由，不要求答案完全匹配固定格式，适合传统规则难以覆盖的生成质量评估。</p>
+<hr />
+<h3 id="q852-llm-judge"><strong>Q8.5.2 · LLM Judge 有什么风险？</strong><a class="headerlink" href="#q852-llm-judge" title="Permanent link">&para;</a></h3>
+<p>风险包括：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>评委模型本身可能犯错
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>偏好长答案
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>偏好某种表达风格
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>评分不稳定
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>容易受提示词影响
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>可能和人类专家标准不一致
+</code></pre></div>
+<p>所以 LLM Judge 适合初筛和规模化评估，但重要场景还需要人工验证或多评委机制。</p>
+<p>追问：如何提升 LLM Judge 可靠性？</p>
+<p>答：可以设计明确评分 rubric，使用多评委投票，隐藏答案来源避免偏见，加入人工抽检，评估评委一致性，并定期校准评分标准。</p>
+<hr />
+<h3 id="q853-win-rate"><strong>Q8.5.3 · 什么是 Win Rate 评估？</strong><a class="headerlink" href="#q853-win-rate" title="Permanent link">&para;</a></h3>
+<p>Win Rate 是相对比较评估。它把生成内容和参考内容成对比较，让评委判断哪个更好，最后统计生成内容胜出的比例。</p>
+<p>例如生成 AIME 题和真实 AIME 题对比，如果 20 次比较中生成题赢 9 次，Win Rate 就是 45%。</p>
+<p>$$
+Win\ Rate = \frac{Wins}{Total\ Comparisons}
+$$</p>
+<p>追问：Win Rate 接近 50% 说明什么？</p>
+<p>答：说明生成内容质量接近参考数据。如果显著低于 50%，说明生成质量不如参考；如果显著高于 50%，可能是生成质量更好，也可能是评估标准存在偏差。</p>
+<hr />
+<h3 id="q854-llm-judge-win-rate"><strong>Q8.5.4 · LLM Judge 和 Win Rate 的区别是什么？</strong><a class="headerlink" href="#q854-llm-judge-win-rate" title="Permanent link">&para;</a></h3>
+<p>LLM Judge 是绝对评分，比如给一道题打 4.2/5 分。Win Rate 是相对评估，比如判断生成题和真题哪个更好。</p>
+<p>LLM Judge 适合看整体质量和各维度短板；Win Rate 适合看生成结果与参考数据之间的差距。</p>
+<p>追问：实际项目中应该选哪个？</p>
+<p>答：最好结合使用。LLM Judge 做多维度绝对评分，Win Rate 做相对对比，人工验证做最终质量把关。</p>
+<hr />
+<hr />
+<h3 id="5"><strong>【追问扩展】评估观测补充 5 题</strong><a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<h3 id="q855-agent"><strong>Q8.5.5 · Agent 应该怎么做线上观测？</strong><a class="headerlink" href="#q855-agent" title="Permanent link">&para;</a></h3>
+<p>Agent 观测要记录每轮模型调用、上下文组成、工具调用、工具结果、错误、审批、压缩事件、memory 写入和最终结果。</p>
+<p>关键不是记录越多越好，而是能回放任务过程，定位失败原因。</p>
+<p>追问：观测数据有什么风险？</p>
+<p>回答：可能包含敏感信息、代码、密钥或用户隐私。所以日志要脱敏、权限控制、设置保留周期。</p>
+<hr />
+<h3 id="q856-agent"><strong>Q8.5.6 · Agent 失败如何归因？</strong><a class="headerlink" href="#q856-agent" title="Permanent link">&para;</a></h3>
+<p>可以按链路拆：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>需求理解错误
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>上下文缺失
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>检索召回错误
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>工具选择错误
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>工具参数错误
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>工具执行失败
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>模型推理错误
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>权限阻断
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>压缩丢信息
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>记忆误导
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>评估标准不清
+</code></pre></div>
+<pre class="mermaid"><code>flowchart LR
+  Fail([❌ Agent 任务失败]):::root
+
+  subgraph Pre["📥 输入侧"]
+    F1[需求理解错误&lt;br/&gt;&lt;i&gt;用户意图未抓准&lt;/i&gt;]:::pre
+    F2[上下文缺失&lt;br/&gt;&lt;i&gt;关键信息没装配&lt;/i&gt;]:::pre
+    F3[检索召回错误&lt;br/&gt;&lt;i&gt;RAG 没找到证据&lt;/i&gt;]:::pre
+  end
+
+  subgraph Tool["🔧 工具侧"]
+    F4[工具选择错误&lt;br/&gt;&lt;i&gt;用错了工具&lt;/i&gt;]:::tool
+    F5[工具参数错误&lt;br/&gt;&lt;i&gt;参数填错&lt;/i&gt;]:::tool
+    F6[工具执行失败&lt;br/&gt;&lt;i&gt;外部系统挂了&lt;/i&gt;]:::tool
+  end
+
+  subgraph Model["🤖 模型侧"]
+    F7[模型推理错误&lt;br/&gt;&lt;i&gt;能力不足/幻觉&lt;/i&gt;]:::model
+    F8[记忆误导&lt;br/&gt;&lt;i&gt;旧/错记忆干扰&lt;/i&gt;]:::model
+  end
+
+  subgraph Sys["🛡️ 系统侧"]
+    F9[权限阻断&lt;br/&gt;&lt;i&gt;合理操作被拦&lt;/i&gt;]:::sys
+    F10[压缩丢信息&lt;br/&gt;&lt;i&gt;handoff 丢关键&lt;/i&gt;]:::sys
+    F11[评估标准不清&lt;br/&gt;&lt;i&gt;判错为对/对为错&lt;/i&gt;]:::sys
+  end
+
+  F1 &amp; F2 &amp; F3 -.-&gt; Fail
+  F4 &amp; F5 &amp; F6 -.-&gt; Fail
+  F7 &amp; F8 -.-&gt; Fail
+  F9 &amp; F10 &amp; F11 -.-&gt; Fail
+
+  classDef root fill:#FF6B6B,stroke:#C92A2A,color:#fff,stroke-width:2.5px
+  classDef pre fill:#FFF3CD,stroke:#F5A623,color:#856404
+  classDef tool fill:#FFE0E6,stroke:#E63946,color:#7A1D2A
+  classDef model fill:#D4E9FF,stroke:#4A90E2,color:#1F4E8C
+  classDef sys fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C</code></pre>
+<p>归因时要看证据。比如正确文档有没有被检索到，工具结果有没有进入上下文，模型有没有忽略测试失败。</p>
+<p>追问：为什么失败归因重要？</p>
+<p>回答：因为不同失败原因对应不同优化方向。检索错要改 RAG，工具错要改 schema，压缩错要改 summary，推理错可能才需要换模型。</p>
+<hr />
+<h3 id="q857-agent"><strong>Q8.5.7 · Agent 评估集怎么构建？</strong><a class="headerlink" href="#q857-agent" title="Permanent link">&para;</a></h3>
+<p>评估集应该覆盖真实任务类型，而不是只放简单样例。</p>
+<p>可以包括：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>工具调用任务
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>多步检索任务
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>代码修改任务
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>测试修复任务
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>长上下文任务
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>权限边界任务
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>记忆召回任务
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>压缩续跑任务
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>异常恢复任务
+</code></pre></div>
+<p>每个样本要有输入、期望行为、评分标准和可观测证据。</p>
+<p>追问：真实业务评估集怎么维护？</p>
+<p>回答：从历史工单、PR、需求文档、故障复盘中抽样，脱敏后形成评估集。定期加入新失败案例，防止评估集过时。</p>
+<hr />
+<h3 id="q858-agent"><strong>Q8.5.8 · 如何评估 Agent 的工具调用能力？</strong><a class="headerlink" href="#q858-agent" title="Permanent link">&para;</a></h3>
+<p>可以用 BFCL 这类函数调用 benchmark，也可以自建业务工具调用评估集。</p>
+<p>指标包括：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>工具选择准确率
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>参数准确率
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>调用顺序正确率
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>不必要调用率
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>工具失败恢复率
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>平均工具调用次数
+</code></pre></div>
+<p>如果是函数调用，可以用 AST 匹配评估函数名和参数是否等价——这正是 <strong>BFCL</strong> 的核心做法（详见第 8.3 章）。</p>
+<p>追问：为什么不用字符串匹配？</p>
+<p>回答：因为参数顺序、引号、格式可能不同但语义相同。AST 匹配更适合判断函数调用结构是否一致。</p>
+<hr />
+<h3 id="q859-agent"><strong>Q8.5.9 · 如何评估 Agent 的长任务能力？</strong><a class="headerlink" href="#q859-agent" title="Permanent link">&para;</a></h3>
+<p>要看它能否在多轮工具调用、上下文压缩、状态恢复后仍然完成目标。</p>
+<p>指标可以包括：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>长任务完成率
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>压缩后续跑成功率
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>重复工具调用率
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>任务目标保持率
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>未完成事项保留率
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>中断恢复成功率
+</code></pre></div>
+<p>追问：怎么设计长任务评估样本？</p>
+<p>回答：设计需要多个阶段的任务，比如先读需求、再写方案、再改代码、再跑测试、再处理失败。中途强制触发压缩或中断，看 Agent 是否能恢复。</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Built with MkDocs Material
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

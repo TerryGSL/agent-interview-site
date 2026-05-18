@@ -1,0 +1,1810 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图">
+      
+      
+      
+      
+        <link rel="prev" href="../06-memory/">
+      
+      
+        <link rel="next" href="../08-tools/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🗜️ 上下文压缩 - Agent 工程师面试总册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Agent 工程师面试总册" class="md-header__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent 工程师面试总册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🗜️ 上下文压缩
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📑 导读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💼 项目经历
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧠 Agent 基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-runtime/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏗️ Runtime 架构
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-context/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📦 上下文工程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-rag/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔍 RAG 与检索
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-memory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💾 记忆系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🗜️ 上下文压缩
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔧 工具与沙箱
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-eval/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📊 评估体系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-coding/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💻 Coding Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-training/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎓 训练与模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-protocols/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔌 协议与生态
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-multi-agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🤝 Multi-Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-edge/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📱 端侧/多模态/高并发
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-sysdesign/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏛️ 系统设计
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../16-interview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎤 面试表达
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Agent 工程师面试总册" class="md-nav__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agent 工程师面试总册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💼 项目经历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Agent 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Runtime 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 记忆系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 6 章 · 上下文压缩】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 6 章 · 上下文压缩】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.1 · 主流压缩方案对比（核心追问，必读）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q6.1 · 主流压缩方案对比（核心追问，必读）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整对比表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        怎么选 · 决策矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生产实战的 5 个陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        追问
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.2 · 什么是上下文压缩？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.3 · 一个好的压缩摘要应该包含什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.4 · 如何评估压缩质量？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】上下文压缩长任务追问 4 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q65-agent-compaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.5 · 为什么长任务 Agent 一定需要 compaction？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q66-handoff-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.6 · 什么是 handoff summary？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q67" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.7 · 什么时候应该触发压缩？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q68" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.8 · 压缩后如何验证没有丢关键内容？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 工具与沙箱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Coding Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 协议与生态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📱 端侧/多模态/高并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sysdesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ 系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 6 章 · 上下文压缩】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 6 章 · 上下文压缩】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.1 · 主流压缩方案对比（核心追问，必读）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q6.1 · 主流压缩方案对比（核心追问，必读）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整对比表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        怎么选 · 决策矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生产实战的 5 个陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        追问
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.2 · 什么是上下文压缩？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.3 · 一个好的压缩摘要应该包含什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.4 · 如何评估压缩质量？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】上下文压缩长任务追问 4 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q65-agent-compaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.5 · 为什么长任务 Agent 一定需要 compaction？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q66-handoff-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.6 · 什么是 handoff summary？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q67" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.7 · 什么时候应该触发压缩？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q68" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6.8 · 压缩后如何验证没有丢关键内容？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="6">🗜️ 第 6 章 · 上下文压缩<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
+<h2 id="6_1"><strong>【第 6 章 · 上下文压缩】</strong><a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h2>
+<h3 id="q61"><strong>Q6.1 · 主流压缩方案对比（核心追问，必读）</strong><a class="headerlink" href="#q61" title="Permanent link">&para;</a></h3>
+<p>业界常见的压缩做法有 7 大类，<strong>不是单选一种，而是按场景组合</strong>。下面是完整对比表 + 决策树。</p>
+<pre class="mermaid"><code>flowchart TB
+  Trigger([🚨 上下文 &gt; 阈值&lt;br/&gt;典型 60-80% context window]):::trigger
+
+  subgraph Methods["📚 7 种主流压缩方案"]
+    direction TB
+    M1["**① 滑动窗口 FIFO**&lt;br/&gt;直接砍最早 N 轮"]:::simple
+    M2["**② Recursive Summary 递归摘要**&lt;br/&gt;分段摘要 + 摘要的摘要"]:::medium
+    M3["**③ Hierarchical 分级保留**&lt;br/&gt;近全保留/中摘要/远抽事实"]:::medium
+    M4["**④ Handoff Summary 任务交接**&lt;br/&gt;结构化模板 (Goal/State/Done/...)"]:::advanced
+    M5["**⑤ Hierarchical Memory 分层记忆**&lt;br/&gt;高频内容上浮，冷数据外置"]:::advanced
+    M6["**⑥ External State File 外部状态文件**&lt;br/&gt;关键证据落盘，按需 read"]:::advanced
+    M7["**⑦ Sub-Agent Task Decomposition 子任务拆分**&lt;br/&gt;每个子任务独立 context"]:::advanced
+  end
+
+  Decision{{"💡 决策"}}:::decision
+
+  Trigger ==&gt; Methods ==&gt; Decision
+
+  classDef trigger fill:#FF6B6B,stroke:#C92A2A,color:#fff,stroke-width:2px
+  classDef simple fill:#FFD43B,stroke:#F08C00,color:#333
+  classDef medium fill:#A8D0FF,stroke:#4A90E2,color:#1F4E8C
+  classDef advanced fill:#D4F4DD,stroke:#27AE60,color:#0F5132
+  classDef decision fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C,stroke-width:2px</code></pre>
+<h4 id="_1"><strong>完整对比表</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>方案</th>
+<th>原理</th>
+<th>优势</th>
+<th>劣势</th>
+<th>典型场景</th>
+<th>信息保真度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td><strong>滑动窗口 (FIFO)</strong></td>
+<td>超阈值直接砍最早 N 轮</td>
+<td>实现极简、0 LLM 调用、延迟可忽略</td>
+<td>一刀切丢早期目标和约束</td>
+<td>短对话、客服 chitchat</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>②</td>
+<td><strong>Recursive Summary (ReSum)</strong></td>
+<td>每段摘要再摘要，越早越糊</td>
+<td>token 预算严控、信息有梯度</td>
+<td>多轮摘要会丢细节、需要计算</td>
+<td>长任务 Research、Agent 多步执行</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>③</td>
+<td><strong>Hierarchical 分级保留</strong></td>
+<td>最近 N 完保留 / 中 M 摘要 / 远只抽事实</td>
+<td>平衡详略、近期细节完整</td>
+<td>临界点效应、摘要质量决定一切</td>
+<td>Coding Agent、文档对话</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>④</td>
+<td><strong>Handoff Summary</strong></td>
+<td>按 Goal/State/Done/Pending/Risk 模板压缩</td>
+<td>任务连续性最强、可断点续跑</td>
+<td>模板设计成本高、不适合纯聊天</td>
+<td>Coding Agent / 长流程任务</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td><strong>Hierarchical Memory</strong></td>
+<td>把历史按访问频率分层，热的留 ctx 冷的外置</td>
+<td>长会话能扛、内存友好</td>
+<td>需要 embedding + 检索基建</td>
+<td>多用户多项目助手、长期对话</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td><strong>External State File</strong></td>
+<td>关键证据（diff/失败堆栈/checkpoint）落到 <code>.harness/state/</code>，按需 <code>read_file</code> 拉回</td>
+<td>状态永不丢、可审计、可回放</td>
+<td>需要 Hook 配合、读取要花步骤</td>
+<td>Coding Agent / 生产级 Agent</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>⑦</td>
+<td><strong>Sub-Agent 任务拆分</strong></td>
+<td>把任务拆给独立子 Agent，每个有自己 ctx</td>
+<td>主 Agent ctx 极轻、并行加速</td>
+<td>子 Agent 协调成本、结果聚合难</td>
+<td>复杂研究、Multi-Agent 编排</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_2"><strong>怎么选 · 决策矩阵</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐组合</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>纯客服对话</td>
+<td>① 滑动窗口</td>
+<td>早期 chitchat 丢了不致命</td>
+</tr>
+<tr>
+<td>单轮长查询（文档问答）</td>
+<td>③ Hierarchical</td>
+<td>当前问题 + 最近文档要完整</td>
+</tr>
+<tr>
+<td>Coding Agent 修 bug</td>
+<td>③+④+⑥ 三件套</td>
+<td>近期 diff 完保留 + 阶段 handoff + 失败堆栈外置</td>
+</tr>
+<tr>
+<td>多小时 Research Agent</td>
+<td>②+⑤ ReSum + 分层记忆</td>
+<td>长跨度信息要分层管理</td>
+</tr>
+<tr>
+<td>Multi-Agent 系统</td>
+<td>④+⑦ Handoff + 子任务</td>
+<td>主编排者只看摘要</td>
+</tr>
+<tr>
+<td>端到端工单流（项目 C）</td>
+<td>②+④+⑥</td>
+<td>子域 Agent 间用 Handoff 交接，关键工单证据外置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5"><strong>生产实战的 5 个陷阱</strong><a class="headerlink" href="#5" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>临界点抖动</strong>：阈值设 80% 时，刚压完就跌到 75%，下一个工具结果又顶到 81%，反复压缩。<strong>修复</strong>：压缩后留至少 20% buffer，下次再压必须 &gt; 上次压完后水位 + 10%</li>
+<li><strong>强规则被压掉</strong>：handoff 摘要忘了带"不允许改 schema"这种关键约束。<strong>修复</strong>：PostCompact Hook 强制重新加载 AGENTS.md / system prompt 的强规则段</li>
+<li><strong>已失败方案被丢</strong>：Agent 又走一遍刚试过的死路。<strong>修复</strong>：handoff 模板必须有 <code>Failed Attempts</code> 字段</li>
+<li><strong>工具结果原文进摘要</strong>：把 10K 行测试日志当 raw text 喂给 summary LLM，token 爆炸。<strong>修复</strong>：先工具结果裁剪（保留 stderr + 失败行），再进 summary</li>
+<li><strong>压缩本身被取消</strong>：用户点了"中断"刚好压缩进行中。<strong>修复</strong>：压缩操作必须可中断，且不能破坏当前 state file</li>
+</ol>
+<h4 id="_3"><strong>追问</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p><strong>Q：为什么不直接用 1M context 的模型，省得压缩？</strong></p>
+<blockquote>
+<p>Token 成本仍然线性涨 + 长 context 模型注意力会被噪音稀释（"Lost in the middle"现象）+ 延迟随 context 上涨。长 context 降低了压缩频率，但不消除压缩需求。<strong>生产经验：64K 是性价比拐点，超过这个就开始性能/成本/质量三选二</strong>。</p>
+</blockquote>
+<p><strong>Q：能不能让模型自己决定什么时候压缩？</strong></p>
+<blockquote>
+<p>可以但不推荐做主路径。模型对自己 context 用量的感知不准。生产推荐：<strong>确定性触发（token 计数）+ 模型建议（Agent 觉得"上下文乱了"主动调 <code>request_compaction</code> 工具）双轨制</strong>。</p>
+</blockquote>
+<p><strong>Q：压缩后怎么验证没丢关键信息？</strong></p>
+<blockquote>
+<p>让模型基于压缩后的 context 回答 5 个固定问题（原始目标 / 未完成 / 关键约束 / 已失败方案 / 下一步），任何一个答不出就回滚。详见 [Story 4 上下文分级压缩] 和 [第 6 章 Handoff 流程图]。</p>
+</blockquote>
+<hr />
+<h3 id="q62"><strong>Q6.2 · 什么是上下文压缩？</strong><a class="headerlink" href="#q62" title="Permanent link">&para;</a></h3>
+<p>上下文压缩是指当会话历史过长时，把旧对话、工具结果和中间过程压缩成摘要，让任务能继续进行。</p>
+<p>但在 Agent 里，压缩不是普通聊天摘要，而更像任务交接文档。它要保留当前任务状态，而不是简单总结“我们讨论了什么”。</p>
+<p>追问：压缩和记忆有什么区别？</p>
+<p>答：压缩服务当前会话，解决上下文窗口不够的问题；记忆服务未来会话，保存长期可复用经验。压缩是当前项目经理写交接单，记忆是长期知识库新增经验。</p>
+<hr />
+<h3 id="q63"><strong>Q6.3 · 一个好的压缩摘要应该包含什么？</strong><a class="headerlink" href="#q63" title="Permanent link">&para;</a></h3>
+<p>应该包含：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>用户原始目标
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>当前阶段
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>已经完成的工作
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>未完成事项
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>关键决策
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>已读取文件
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>已修改文件
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>运行过的命令
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>测试结果
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>失败尝试
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>重要约束
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>风险点
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>下一步建议
+</code></pre></div>
+<p>例如在 Coding Agent 中，压缩摘要要写清楚：改了哪些文件、为什么改、跑了哪些测试、失败在哪里、哪些方案已经被否掉。否则压缩后 Agent 会忘记原始目标或重复走错路。</p>
+<p>一个更适合背诵的 handoff 模板如下：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>必写内容</th>
+<th>不应该写什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>用户原始目标、不可违反约束</td>
+<td>泛泛而谈“讨论了 Agent”</td>
+</tr>
+<tr>
+<td>Current State</td>
+<td>当前阶段、正在处理的子任务</td>
+<td>已经过期的中间猜测</td>
+</tr>
+<tr>
+<td>Completed</td>
+<td>已完成动作、关键决策、修改文件</td>
+<td>大段流水账</td>
+</tr>
+<tr>
+<td>Pending</td>
+<td>未完成 checklist、下一步动作</td>
+<td>没有 owner 的空泛建议</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>测试结果、工具结果、错误摘要</td>
+<td>全量日志原文</td>
+</tr>
+<tr>
+<td>Risks</td>
+<td>已失败方案、风险、需要人工确认点</td>
+<td>未验证的结论</td>
+</tr>
+</tbody>
+</table>
+<p>追问：压缩最容易丢什么？</p>
+<p>答：最容易丢用户最初的限制、失败过的尝试、未完成 checklist、关键测试结果、为什么做某个技术决策，以及哪些文件不能动。</p>
+<hr />
+<h3 id="q64"><strong>Q6.4 · 如何评估压缩质量？</strong><a class="headerlink" href="#q64" title="Permanent link">&para;</a></h3>
+<p>可以看几个指标：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>原始目标保持率
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>未完成事项保持率
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>关键约束保留率
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>错误事实率
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>重复信息比例
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>压缩后任务继续成功率
+</code></pre></div>
+<p>最直接的方法是压缩后让 Agent 继续任务，看它是否还能按原计划推进。如果压缩后频繁跑偏、重复读取同样文件、忘记已确认方案，就说明压缩质量不好。</p>
+<p>追问：压缩摘要越短越好吗？</p>
+<p>答：不是。压缩要在信息完整和 token 节省之间平衡。太短会丢状态，太长又失去压缩意义。对 Agent 来说，结构化摘要比散文式摘要更可靠。</p>
+<hr />
+<hr />
+<h3 id="4"><strong>【追问扩展】上下文压缩长任务追问 4 题</strong><a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<h3 id="q65-agent-compaction"><strong>Q6.5 · 为什么长任务 Agent 一定需要 compaction？</strong><a class="headerlink" href="#q65-agent-compaction" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>🔁 <strong>重复题，统一以【第 6 章 · Q17 什么是上下文压缩 + 6.0 主流方案对比 + Handoff 流程图】为准</strong>。</p>
+<p><strong>一句话答</strong>：长任务历史无限增长，上下文窗口有限——必须压缩。但 compaction 不是普通摘要，要保留<strong>任务连续性</strong>（原始目标 / 阶段 / 已完成 / 未完成 / 关键决策 / 失败尝试 / 下一步）。</p>
+<p><strong>最危险的丢失</strong>：用户的强约束（"不允许改数据库 schema"）和已失败方案。生产级实现会把 compaction + hooks + 上下文重载 + 权限上下文绑在一起。 <a href="https://www.penligent.ai/hackinglabs/inside-claude-code-the-architecture-behind-tools-memory-hooks-and-mcp/">Penligent</a> <a href="https://blakecrosley.com/guides/agent-architecture">Blake Crosley</a></p>
+</blockquote>
+<hr />
+<h3 id="q66-handoff-summary"><strong>Q6.6 · 什么是 handoff summary？</strong><a class="headerlink" href="#q66-handoff-summary" title="Permanent link">&para;</a></h3>
+<p>Handoff summary 是面向任务续接的交接摘要。它不像普通摘要那样只说“我们讨论了什么”，而是告诉下一个执行者“现在做到哪里，接下来该做什么”。</p>
+<p>一个好的 handoff summary 应该包含：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>用户原始目标
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>当前子任务
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>已完成工作
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>未完成任务
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>关键文件
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>已修改内容
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>测试结果
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>失败尝试
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>重要约束
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>风险点
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>下一步建议
+</code></pre></div>
+<p>追问：handoff summary 和项目 summary 有什么区别？</p>
+<p>回答：handoff summary 面向当前任务继续执行，强调下一步；项目 summary 面向归档和复用，强调最终交付和经验沉淀。</p>
+<hr />
+<h3 id="q67"><strong>Q6.7 · 什么时候应该触发压缩？</strong><a class="headerlink" href="#q67" title="Permanent link">&para;</a></h3>
+<p>常见做法是 token 接近阈值时自动压缩，或者用户手动触发。更高级的做法是由 Agent 判断任务边界，在一个子任务完成后主动压缩，而不是等到上下文快爆了才压缩。</p>
+<p>如果压缩发生在子任务中间，可能破坏推理状态。比较合理的时机是阶段结束、测试完成、方案确认后、开发前 checkpoint、长日志处理后。</p>
+<p>追问：压缩前可以做什么 Hook？</p>
+<p>回答：可以保存当前 diff、生成待办清单、检查未完成事项、把关键工具结果写入状态文件，甚至阻止压缩。</p>
+<hr />
+<h3 id="q68"><strong>Q6.8 · 压缩后如何验证没有丢关键内容？</strong><a class="headerlink" href="#q68" title="Permanent link">&para;</a></h3>
+<p>可以让模型基于压缩摘要回答几个检查问题：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>用户原始目标是什么
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>当前未完成事项有哪些
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>哪些文件已修改
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>哪些测试失败
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>有哪些约束不能违反
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>下一步应该做什么
+</code></pre></div>
+<p>如果回答不出来，说明摘要质量不够，需要重新压缩或补充状态。</p>
+<p>追问：压缩摘要是否应该包含完整工具日志？</p>
+<p>回答：不应该。完整日志可以归档到状态文件，摘要里只放关键信息，比如失败测试名、错误码、关键堆栈和影响文件。</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Built with MkDocs Material
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

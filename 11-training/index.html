@@ -1,0 +1,1783 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图">
+      
+      
+      
+      
+        <link rel="prev" href="../10-coding/">
+      
+      
+        <link rel="next" href="../12-protocols/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🎓 训练与模型 - Agent 工程师面试总册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Agent 工程师面试总册" class="md-header__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent 工程师面试总册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🎓 训练与模型
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📑 导读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💼 项目经历
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧠 Agent 基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-runtime/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏗️ Runtime 架构
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-context/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📦 上下文工程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-rag/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔍 RAG 与检索
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-memory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💾 记忆系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-compaction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🗜️ 上下文压缩
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔧 工具与沙箱
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-eval/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📊 评估体系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-coding/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💻 Coding Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎓 训练与模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-protocols/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔌 协议与生态
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-multi-agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🤝 Multi-Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-edge/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📱 端侧/多模态/高并发
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-sysdesign/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏛️ 系统设计
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../16-interview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎤 面试表达
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Agent 工程师面试总册" class="md-nav__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agent 工程师面试总册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💼 项目经历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Agent 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Runtime 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 记忆系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-compaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 工具与沙箱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Coding Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 10 章 · 训练流程与模型】ReAct 工程细节与三阶段训练
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 10 章 · 训练流程与模型】ReAct 工程细节与三阶段训练">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q101-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.1 · ReAct 在工程上有哪些容易被追问的细节？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q102-tool-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.2 · Tool Response 角色设计错了会出什么问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q103-agent-cpt-sft-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.3 · Agent 的三阶段训练 CPT → SFT → RL 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q104-sft-mask-observation-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.4 · SFT 阶段为什么要 mask observation tokens？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q105-rl-grpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.5 · RL 阶段（如 GRPO）的奖励函数怎么设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q106-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.6 · Agent 死循环怎么处理？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q107" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.7 · 上下文爆炸的工程方案有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】Agent 规划与反思 4 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q108-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.8 · ReAct 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q109-plan-and-execute-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.9 · Plan-and-Execute 和 ReAct 有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1010-reflexion-self-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.10 · Reflexion 或 self-reflection 有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1011-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.11 · 如何防止 Agent 卡在循环里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 协议与生态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📱 端侧/多模态/高并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sysdesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ 系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 10 章 · 训练流程与模型】ReAct 工程细节与三阶段训练
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 10 章 · 训练流程与模型】ReAct 工程细节与三阶段训练">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q101-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.1 · ReAct 在工程上有哪些容易被追问的细节？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q102-tool-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.2 · Tool Response 角色设计错了会出什么问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q103-agent-cpt-sft-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.3 · Agent 的三阶段训练 CPT → SFT → RL 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q104-sft-mask-observation-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.4 · SFT 阶段为什么要 mask observation tokens？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q105-rl-grpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.5 · RL 阶段（如 GRPO）的奖励函数怎么设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q106-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.6 · Agent 死循环怎么处理？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q107" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.7 · 上下文爆炸的工程方案有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【追问扩展】Agent 规划与反思 4 题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q108-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.8 · ReAct 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q109-plan-and-execute-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.9 · Plan-and-Execute 和 ReAct 有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1010-reflexion-self-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.10 · Reflexion 或 self-reflection 有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1011-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10.11 · 如何防止 Agent 卡在循环里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="10">🎓 第 10 章 · 训练流程与模型<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
+<h2 id="10-react"><strong>【第 10 章 · 训练流程与模型】ReAct 工程细节与三阶段训练</strong><a class="headerlink" href="#10-react" title="Permanent link">&para;</a></h2>
+<h3 id="q101-react"><strong>Q10.1 · ReAct 在工程上有哪些容易被追问的细节？</strong><a class="headerlink" href="#q101-react" title="Permanent link">&para;</a></h3>
+<p>ReAct 论文层面好讲：Thought → Action → Observation 循环。但面试追问会落到工程实现：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1. 消息角色怎么编排（System / Assistant / User / Tool 谁说什么）
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>2. Tool Response 用什么角色塞回去（直接用 tool 角色 vs 包成 user 角色）
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>3. 模型怎么知道一轮思考结束（stop token / 结构化 JSON / function_call schema）
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>4. 失败工具结果要不要进上下文（要，但要裁剪 + 标注失败）
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>5. 多轮工具调用之间要不要保留完整 Thought（保留，否则模型会忘了为什么调）
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>6. 工具结果太长怎么办（裁剪 + 摘要 + 引用 ID，不要原文塞）
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>7. Thought 内容要不要训练（多数实现 mask 掉 observation，但 thought 要训）
+</code></pre></div>
+<pre class="mermaid"><code>mindmap
+  root((**ReAct 工程&lt;br/&gt;七大追问**))
+    💬 消息协议
+      ① 角色编排 System/Assistant/User/Tool
+      ② Tool Response 塞回角色 user vs tool
+    🛑 终止判定
+      ③ 一轮结束信号 stop token / JSON / schema
+    🔄 上下文管理
+      ④ 失败结果进上下文 要 但裁剪+标注
+      ⑤ Thought 是否保留 必保留 否则忘原因
+      ⑥ 结果太长 裁剪+摘要+引用 ID
+    🎓 训练侧
+      ⑦ 哪些 token 算 loss thought 算 observation mask</code></pre>
+<p>下面这张图是一轮典型的 ReAct 消息编排，覆盖正常路径 + 工具失败回流：</p>
+<pre class="mermaid"><code>sequenceDiagram
+  autonumber
+  actor U as 👤 User
+  participant S as 🧷 System&lt;br/&gt;(规则+工具schema)
+  participant L as 🤖 LLM&lt;br/&gt;(推理核心)
+  participant B as 🛡️ Tool Broker&lt;br/&gt;(权限+路由)
+  participant T as 🔧 Tool&lt;br/&gt;(File/Shell/API)
+
+  U-&gt;&gt;+L: user 帮我修登录bug
+  S-&gt;&gt;L: system 工具列表 + 输出格式
+  Note over L: 💭 Thought 先看 auth.py
+  L-&gt;&gt;+B: assistant.tool_call read_file
+  Note over B: 🔒 权限检查 workspace 内?
+
+  alt ✅ 通过
+    B-&gt;&gt;+T: exec read_file
+    T--&gt;&gt;-B: 文件内容 或 错误
+    B--&gt;&gt;L: user.tool_result 裁剪后内容
+  else ❌ 拒绝
+    B--&gt;&gt;L: user.tool_result error permission denied
+  end
+  deactivate B
+
+  Note over L: 💭 Thought 发现 JWT 校验错误
+  L-&gt;&gt;+B: assistant.tool_call apply_patch
+  B-&gt;&gt;+T: write
+  T--&gt;&gt;-B: ok
+  B--&gt;&gt;-L: user.tool_result patched
+  L--&gt;&gt;-U: assistant 已修复，测试通过
+
+  Note right of L: ⚠️ tool_result 必须用 user 角色塞回，&lt;br/&gt;不要用 assistant —— 否则模型把&lt;br/&gt;"外部观察"当成"自己说过的话"，&lt;br/&gt;下一轮易自我强化幻觉</code></pre>
+<p>追问：为什么不用 <code>tool</code> 角色直接传回（OpenAI 的格式就是 tool 角色）？</p>
+<p>答：OpenAI 的 ChatCompletion 协议确实有 <code>tool</code> 角色，配合 <code>tool_call_id</code> 做严格关联。但很多开源模型/自研 Agent 框架没有 <code>tool</code> 角色，只能在 <code>user</code> 或 <code>function</code> 角色里塞。用 <code>user</code> 角色的好处是兼容性最广，缺点是要在内容里加显式标记（如 <code>&lt;observation&gt;...&lt;/observation&gt;</code>）让模型区分这是"外部观察"而不是"用户新提问"。生产环境一般是：原生支持 tool 角色就用 tool，否则用 user + 结构化标签，避免模型把工具结果误判成新需求。</p>
+<hr />
+<h3 id="q102-tool-response"><strong>Q10.2 · Tool Response 角色设计错了会出什么问题？</strong><a class="headerlink" href="#q102-tool-response" title="Permanent link">&para;</a></h3>
+<p>会出现三类典型 bug：</p>
+<table>
+<thead>
+<tr>
+<th>错误用法</th>
+<th>模型表现</th>
+<th>根因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用 assistant 角色塞工具结果</td>
+<td>模型把观察当成自己说过的话，下一轮重复同样错误推理</td>
+<td>模型对 assistant 内容有更高 trust，且会延续 reasoning style</td>
+</tr>
+<tr>
+<td>用 system 角色塞工具结果</td>
+<td>模型把临时观察当成长期规则，跨轮持续受影响</td>
+<td>system 在多数模型里是不可覆盖的强约束</td>
+</tr>
+<tr>
+<td>工具结果不带分隔符直接拼</td>
+<td>模型把上一个工具的输出当成下一个工具的输入</td>
+<td>上下文边界丢失</td>
+</tr>
+</tbody>
+</table>
+<p>正确做法是：用 user 或 tool 角色，且每条工具结果都带 <code>tool_call_id</code>、<code>tool_name</code>、<code>status</code>（success/error）、<code>truncated</code>（是否裁剪）字段，让模型能精确知道这是哪次调用的回执。</p>
+<hr />
+<h3 id="q103-agent-cpt-sft-rl"><strong>Q10.3 · Agent 的三阶段训练 CPT → SFT → RL 是什么？</strong><a class="headerlink" href="#q103-agent-cpt-sft-rl" title="Permanent link">&para;</a></h3>
+<p>工业界训一个能做 Agent 的模型，主流是三段式：</p>
+<pre class="mermaid"><code>flowchart TB
+  subgraph CPT["**🟦 Stage 1 · CPT** (Continued Pre-Training)"]
+    direction TB
+    C_in["📚 输入&lt;br/&gt;大量未标注 Agent 轨迹&lt;br/&gt;+ 代码 + 工具文档 + 多轮对话"]:::cpt
+    C_goal["🎯 目标&lt;br/&gt;让模型见过'工具调用'格式&lt;br/&gt;建立基础分布"]:::cpt
+    C_loss["⚙️ Loss&lt;br/&gt;标准 next-token&lt;br/&gt;**全 token 计算**"]:::cpt
+  end
+
+  subgraph SFT["**🟨 Stage 2 · SFT** (Supervised Fine-Tuning)"]
+    direction TB
+    S_in["📋 输入&lt;br/&gt;高质量人工/合成 Agent 轨迹&lt;br/&gt;(Q, Thought, Action, Obs, …, Answer)"]:::sft
+    S_goal["🎯 目标&lt;br/&gt;学会'什么场景调什么工具'"]:::sft
+    S_loss["⚙️ Loss&lt;br/&gt;**只算 Thought + Action**&lt;br/&gt;🚫 mask 掉 Observation tokens"]:::sft_loss
+  end
+
+  subgraph RL["**🟩 Stage 3 · RL** (Reinforcement Learning)"]
+    direction TB
+    R_in["🌍 输入&lt;br/&gt;任务 + 可执行环境&lt;br/&gt;(工具能真跑)"]:::rl
+    R_goal["🎯 目标&lt;br/&gt;自主探索 + 长链推理 + 反思"]:::rl
+    R_alg["🔁 算法&lt;br/&gt;GRPO / PPO / DPO"]:::rl
+    R_rew["🏆 Reward&lt;br/&gt;任务完成度 + 工具准确率&lt;br/&gt;+ 格式合规 - 步数惩罚"]:::rl_rew
+  end
+
+  CPT ==&gt;|"模型知道'格式长这样'"| SFT
+  SFT ==&gt;|"模型知道'该这么做'"| RL
+
+  classDef cpt fill:#D4E9FF,stroke:#4A90E2,color:#1F4E8C
+  classDef sft fill:#FFF3CD,stroke:#F5A623,color:#856404
+  classDef sft_loss fill:#FFE066,stroke:#F08C00,color:#5C3D00,stroke-width:2.5px
+  classDef rl fill:#D4F4DD,stroke:#27AE60,color:#0F5132
+  classDef rl_rew fill:#A9E5BB,stroke:#0F5132,color:#0F5132,stroke-width:2.5px</code></pre>
+<blockquote>
+<p>💡 <strong>RL 阶段的核心价值</strong>：SFT 只能模仿训练集里的轨迹，RL 让模型在<strong>新任务</strong>上自主探索，通过 reward 信号学会更优策略。</p>
+</blockquote>
+<p>追问：能不能跳过 CPT 直接 SFT？</p>
+<p>答：能，但效果会差。如果基座模型从来没见过 <code>&lt;tool_call&gt;...&lt;/tool_call&gt;</code> 这种格式，SFT 阶段需要的样本量会大幅增加，且容易过拟合到训练集的具体工具列表。CPT 用海量未标注数据让模型先"熟悉这种语法"，SFT 再教"具体怎么用"，分工更清晰，数据效率更高。</p>
+<hr />
+<h3 id="q104-sft-mask-observation-tokens"><strong>Q10.4 · SFT 阶段为什么要 mask observation tokens？</strong><a class="headerlink" href="#q104-sft-mask-observation-tokens" title="Permanent link">&para;</a></h3>
+<p>因为 observation 是<strong>外部环境产生的客观结果</strong>，不是模型该学的内容。</p>
+<p>举个例子，训练样本是：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Thought: 我需要查北京天气
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Action: get_weather(city=&quot;北京&quot;)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Observation: {&quot;temp&quot;: 15, &quot;condition&quot;: &quot;晴&quot;}
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Thought: 现在气温 15 度，建议穿外套
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Final Answer: 北京今天 15 度晴天，建议穿外套
+</code></pre></div>
+<p>如果不 mask observation：
+- 模型会学到"看到 get_weather 调用后要输出 <code>{"temp": 15, ...}</code>"——但下一次北京气温变了，模型可能还会输出 15！
+- 模型把工具结果当成自己的"记忆"，下次直接编造而不去真的调工具。</p>
+<p>mask observation 之后：
+- 模型只学"什么时候该 Thought 什么、什么时候该发 Action"
+- Observation 的具体值只作为上下文输入，不参与 loss 计算
+- 推理时模型知道：observation 不是我说的，是工具说的，要看真实工具返回</p>
+<p>工程实现上通常做一个 <code>loss_mask</code> 数组，observation 区段对应位置全设 0：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tokens:    [Thought_1, Action_1, Obs_1, Thought_2, Action_2, Obs_2, FinalAnswer]
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>loss_mask: [   1,         1,       0,       1,         1,       0,       1     ]
+</code></pre></div>
+<p>追问：那 Thought 要不要算 loss？</p>
+<p>答：要。Thought 是模型自己的推理，是要学的核心能力之一。如果连 Thought 都 mask 掉，只算 Action 和 Final Answer，模型会变成"直接输出工具调用"的格式化器，失去多步推理能力。</p>
+<hr />
+<h3 id="q105-rl-grpo"><strong>Q10.5 · RL 阶段（如 GRPO）的奖励函数怎么设计？</strong><a class="headerlink" href="#q105-rl-grpo" title="Permanent link">&para;</a></h3>
+<p>GRPO（Group Relative Policy Optimization）是 DeepSeek-R1 那套，思路是同一个 prompt 采样多条轨迹，组内相对打分。Agent 场景的 reward 通常是多目标加权：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>R_total = w1 * R_task          # 任务完成度（关键）
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>        + w2 * R_tool_accuracy  # 工具调用准确率
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        + w3 * R_format         # 输出格式合规（JSON 解析成功率）
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        - w4 * P_steps          # 步数惩罚（鼓励短链）
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        - w5 * P_repeat         # 重复调用惩罚
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        - w6 * P_unsafe         # 危险操作惩罚
+</code></pre></div>
+<p>设计要点：
+1. <strong>R_task 必须可验证</strong>：测试通过/检索结果命中/最终答案 exact match，不能用 LLM Judge 当唯一信号（噪声大、reward hacking 风险高）
+2. <strong>格式 reward 是底线</strong>：模型连 JSON 都吐不对，后续 reward 全是 0，会陷入死循环
+3. <strong>步数惩罚要温和</strong>：惩罚太重模型会学会"少调工具直接编答案"
+4. <strong>稀疏 reward 要 shaping</strong>：长任务只在最后给 reward，模型几乎学不到东西，通常会引入中间检查点（如：调对工具 +0.1，参数对 +0.1，最终答案对 +1）</p>
+<p>追问：为什么不用 PPO 用 GRPO？</p>
+<p>答：PPO 需要训练一个 critic（价值网络），显存和工程复杂度都高。GRPO 用"同一 prompt 的 N 条轨迹组内归一化"代替 critic，省一半显存，工程上简单很多。代价是 N 必须够大（一般 8-16），采样成本高。Agent 场景因为轨迹本身长（多轮工具调用），GRPO 更友好。</p>
+<hr />
+<h3 id="q106-agent"><strong>Q10.6 · Agent 死循环怎么处理？</strong><a class="headerlink" href="#q106-agent" title="Permanent link">&para;</a></h3>
+<p>生产级 Agent 必须有三层防御：</p>
+<pre class="mermaid"><code>stateDiagram-v2
+  direction LR
+  [*] --&gt; Normal
+
+  Normal: 🟢 正常执行
+  MaxIter: 🟡 迭代超限
+  LoopDetect: 🟠 循环检测
+  ToolFail: 🔴 工具反复失败
+  Degrade: 🟣 降级模式
+  Human: 👤 请求人工
+  Stop: ⏹️ 任务终止
+
+  Normal --&gt; MaxIter: step_count ≥ MAX_STEPS\n(默认 30)
+  Normal --&gt; LoopDetect: 连续 3 轮无新增信息\nor 相同 tool+params 重复
+  Normal --&gt; ToolFail: 同一工具\n连续失败 3 次
+
+  MaxIter --&gt; Degrade: 切换轻量策略\n(简化推理/跳过工具)
+  LoopDetect --&gt; Degrade: 强制改变策略\n(换工具/换 query)
+  ToolFail --&gt; Human: 提交状态\n+ 失败证据
+
+  Degrade --&gt; Normal: 恢复执行
+  Degrade --&gt; Human: 降级仍失败
+  Human --&gt; Stop: 用户放弃
+  Human --&gt; Normal: 用户给新方向
+
+  Stop --&gt; [*]
+
+  note right of LoopDetect
+    🔍 循环检测信号
+    ① tool_call hash 重复
+    ② 上下文 token 增量 &lt; 阈值
+    ③ Thought 语义相似度 &gt; 0.9
+    ④ 同文件反复读无修改
+  end note
+
+  note right of Degrade
+    📉 降级策略
+    · 关闭探索性工具
+    · 强制走 Workflow 兜底
+    · 任务拆小+独立超时
+  end note</code></pre>
+<p>工程要点：
+- <strong>MAX_STEPS 不是越大越好</strong>：30 步是一个经验值，超过后多数任务收益递减、风险递增
+- <strong>循环检测要看"信息增量"而不是"步数"</strong>：模型可能每轮都调不同工具但都没拿到新信息，这种伪进展最危险
+- <strong>降级不是放弃</strong>：好的降级会保留任务上下文，切换到更保守的策略而不是直接 abort</p>
+<p>追问：相同 tool + 相同 params 一定是循环吗？</p>
+<p>答：不一定。比如轮询任务状态（每 5 秒查一次）就是合法的重复调用。所以循环检测要看"在 N 步内"，且要排除明确标记的轮询工具（schema 里加 <code>idempotent: false, pollable: true</code>）。</p>
+<hr />
+<h3 id="q107"><strong>Q10.7 · 上下文爆炸的工程方案有哪些？</strong><a class="headerlink" href="#q107" title="Permanent link">&para;</a></h3>
+<p>不只是"压缩"一个手段，生产环境通常组合用：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>触发时机</th>
+<th>适用场景</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>滑动窗口（FIFO 截断）</td>
+<td>token &gt; 阈值</td>
+<td>短期对话、客服</td>
+<td>丢早期目标</td>
+</tr>
+<tr>
+<td>动态摘要（ReSum）</td>
+<td>token &gt; 阈值</td>
+<td>长任务、Coding Agent</td>
+<td>摘要质量决定续跑成功率</td>
+</tr>
+<tr>
+<td>分级压缩</td>
+<td>不同年龄段不同力度</td>
+<td>长会话</td>
+<td>实现复杂</td>
+</tr>
+<tr>
+<td>Hierarchical Memory</td>
+<td>高频访问内容上浮</td>
+<td>多用户/多项目</td>
+<td>需要 embedding + 检索</td>
+</tr>
+<tr>
+<td>外部 State 文件</td>
+<td>阶段切换</td>
+<td>Coding Agent</td>
+<td>需要 Hook 配合</td>
+</tr>
+<tr>
+<td>任务拆分 + 子 Agent</td>
+<td>任务边界清晰</td>
+<td>多阶段流程</td>
+<td>通信开销</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ReSum（Recursive Summarization）</strong> 这个词最近面试问得多，意思是：每次压缩不是一次性把所有历史砍掉，而是递归地"摘要的摘要"。比如：
+- Level 0：原始对话
+- Level 1：最近 10 轮的摘要
+- Level 2：上一段 Level 1 摘要的进一步浓缩
+- 最早的 Level 2 摘要可能再被压成一行"目标 + 关键决策"</p>
+<p>这样保证越早的内容压缩越狠，越近的内容保留越细，token 预算可控且信息有梯度。</p>
+<p>追问：滑动窗口和动态摘要怎么选？</p>
+<p>答：看任务类型。<strong>纯对话</strong>用滑动窗口够了，丢点早期 chitchat 不致命；<strong>任务型</strong>（Coding/Research）必须用摘要，原始目标和约束不能丢；<strong>超长 Research</strong>（几小时）用 ReSum + 外部 State 文件双保险。</p>
+<hr />
+<hr />
+<h3 id="agent-4"><strong>【追问扩展】Agent 规划与反思 4 题</strong><a class="headerlink" href="#agent-4" title="Permanent link">&para;</a></h3>
+<h3 id="q108-react"><strong>Q10.8 · ReAct 是什么？</strong><a class="headerlink" href="#q108-react" title="Permanent link">&para;</a></h3>
+<p>ReAct 是 Reasoning + Acting，把推理和行动结合起来。Agent 一边思考下一步，一边调用工具，再根据观察结果继续推理。</p>
+<p>它适合需要多步工具调用的任务，比如检索、调试、网页操作。</p>
+<p>追问：ReAct 的缺点是什么？</p>
+<p>回答：容易产生过长推理链和重复工具调用。如果没有状态管理和停止条件，Agent 可能陷入循环。</p>
+<hr />
+<h3 id="q109-plan-and-execute-react"><strong>Q10.9 · Plan-and-Execute 和 ReAct 有什么区别？</strong><a class="headerlink" href="#q109-plan-and-execute-react" title="Permanent link">&para;</a></h3>
+<p>ReAct 是边想边做，适合动态探索。Plan-and-Execute 是先制定计划，再按计划执行，适合目标清晰、步骤可拆的任务。</p>
+<p>复杂系统里可以结合使用。先生成高层计划，再在每个子任务里用 ReAct 执行。</p>
+<p>追问：计划需要固定不变吗？</p>
+<p>回答：不需要。计划应该随工具反馈更新。比如测试失败后，计划要从“提交总结”回到“修复失败用例”。</p>
+<hr />
+<h3 id="q1010-reflexion-self-reflection"><strong>Q10.10 · Reflexion 或 self-reflection 有什么用？</strong><a class="headerlink" href="#q1010-reflexion-self-reflection" title="Permanent link">&para;</a></h3>
+<p>反思机制让 Agent 在失败后总结原因，调整策略。比如工具调用失败、测试失败、答案被评估为不忠实时，Agent 可以反思“为什么失败、下次怎么改”。</p>
+<p>但反思不能只靠模型自言自语，最好结合真实反馈，比如测试结果、评估指标、人工评论。</p>
+<p>追问：反思会不会增加幻觉？</p>
+<p>回答：会。如果没有外部证据，模型可能编造失败原因。所以反思要基于工具结果和可验证证据。</p>
+<hr />
+<h3 id="q1011-agent"><strong>Q10.11 · 如何防止 Agent 卡在循环里？</strong><a class="headerlink" href="#q1011-agent" title="Permanent link">&para;</a></h3>
+<p>可以设置最大步数、最大工具调用次数、最大相同工具重试次数。还要记录历史尝试，避免重复执行同一失败路径。</p>
+<p>另外可以设计 loop detector，比如连续多轮没有新信息、重复读取同一文件、重复执行同一命令，就触发停止或请求用户确认。</p>
+<p>追问：Agent 卡住时应该怎么让它恢复？</p>
+<p>回答：可以让它输出当前状态、已尝试方案、失败原因和需要用户确认的问题，而不是继续盲目执行。</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Built with MkDocs Material
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

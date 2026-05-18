@@ -1,0 +1,1510 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图">
+      
+      
+      
+      
+      
+        <link rel="next" href="../01-projects/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>📑 导读 - Agent 工程师面试总册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#16" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Agent 工程师面试总册" class="md-header__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent 工程师面试总册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              📑 导读
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📑 导读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💼 项目经历
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧠 Agent 基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-runtime/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏗️ Runtime 架构
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-context/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📦 上下文工程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-rag/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔍 RAG 与检索
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-memory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💾 记忆系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-compaction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🗜️ 上下文压缩
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔧 工具与沙箱
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-eval/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📊 评估体系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-coding/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💻 Coding Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-training/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎓 训练与模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-protocols/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔌 协议与生态
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-multi-agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🤝 Multi-Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-edge/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📱 端侧/多模态/高并发
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-sysdesign/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏛️ 系统设计
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../16-interview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎤 面试表达
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Agent 工程师面试总册" class="md-nav__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agent 工程师面试总册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ 16 章主结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 16 个 项目Story 分布
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎤 长题答题框架与视觉速记
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💼 项目经历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Agent 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Runtime 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 记忆系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-compaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 工具与沙箱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Coding Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 协议与生态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📱 端侧/多模态/高并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sysdesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ 系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ 16 章主结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-story" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 16 个 项目Story 分布
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎤 长题答题框架与视觉速记
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>📑 导读</h1>
+
+<h3 id="16"><strong>🗂️ 16 章主结构</strong><a class="headerlink" href="#16" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第 0</strong></td>
+<td>⭐ <strong>项目经历</strong>（面试核心）</td>
+<td>项目 A 桌面 LLM Agent · 项目 B 视频生成 SaaS · 项目 C 员工帮助台 · 10 个项目级追问</td>
+</tr>
+<tr>
+<td><strong>第 1</strong></td>
+<td>Agent 基础概念</td>
+<td>定义 · vs Chatbot · vs Workflow · 工作循环 · 核心组件 · 难点</td>
+</tr>
+<tr>
+<td><strong>第 2</strong></td>
+<td>Runtime 架构</td>
+<td>9 层架构 · 状态管理 · 上下文一般包含 · prompt 为什么不够</td>
+</tr>
+<tr>
+<td><strong>第 3</strong></td>
+<td>上下文工程</td>
+<td>优先级 8 层漏斗 · Context Packet 字段 · Token 预算分配 · 去重</td>
+</tr>
+<tr>
+<td><strong>第 4</strong></td>
+<td>RAG 与检索</td>
+<td>标准流程 · Chunking · Hybrid Search · Rerank · Query Rewrite · HyDE · Multi-hop · GraphRAG · Agentic/Self/Corrective RAG · 评估 · 权限</td>
+</tr>
+<tr>
+<td><strong>第 5</strong></td>
+<td>记忆系统</td>
+<td>记忆类型 · Memory vs RAG · 自动记忆风险 · 数据结构 · 短期 vs 长期 · 抽取 · 检索 · 隐私</td>
+</tr>
+<tr>
+<td><strong>第 6</strong></td>
+<td>上下文压缩</td>
+<td>7 种主流方案对比 · Handoff Summary 模板 · 触发时机 · 一致性验证 · 5 大生产陷阱</td>
+</tr>
+<tr>
+<td><strong>第 7</strong></td>
+<td>工具与沙箱</td>
+<td>工具协议 · Schema 设计反例 · MCP · 结果裁剪 · 沙箱权限 · 错误处理 · 安全风险</td>
+</tr>
+<tr>
+<td><strong>第 8</strong></td>
+<td>评估体系</td>
+<td>为什么难 · 指标矩阵 · BFCL（AST 匹配）· GAIA（准精确匹配）· LLM Judge · Win Rate · 评估集构建 · 失败归因 · 线上观测</td>
+</tr>
+<tr>
+<td><strong>第 9</strong></td>
+<td>Coding Agent / Harness</td>
+<td>设计要点 · Codex vs Claude Code · AGENTS.md · Harness 工程 · 沙箱与最小修改 · 产品对比</td>
+</tr>
+<tr>
+<td><strong>第 10</strong></td>
+<td>训练流程与模型</td>
+<td>ReAct 工程细节 · CPT→SFT→RL · Observation Mask · GRPO 奖励 · 死循环检测 · 上下文爆炸 · 规划/反思</td>
+</tr>
+<tr>
+<td><strong>第 11</strong></td>
+<td>协议与生态</td>
+<td>MCP / A2A / Skills / Function Calling 四件套对比 · Workflow + Agent 混合</td>
+</tr>
+<tr>
+<td><strong>第 12</strong></td>
+<td>Multi-Agent 编排</td>
+<td>三层架构（路由/管理/执行）· A2A 心跳防死锁 · 三大落地挑战</td>
+</tr>
+<tr>
+<td><strong>第 13</strong></td>
+<td>端侧 / 多模态 / 高并发</td>
+<td>端侧部署 · 视觉链路 · P99 优化 · KV cache</td>
+</tr>
+<tr>
+<td><strong>第 14</strong></td>
+<td>系统设计综合题</td>
+<td>设计企业 Coding Agent 平台 · 评估系统 · Memory 服务 · 压缩系统 · 权限系统 · 企业知识库</td>
+</tr>
+<tr>
+<td><strong>第 15</strong></td>
+<td>面试表达汇总</td>
+<td>项目经验讲法 · 高级观点金句 · 高频追问 · 框架对比 · STAR 包装 · 短答合集</td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-story"><strong>🎯 16 个 项目Story 分布</strong><a class="headerlink" href="#16-story" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>项目 A · 桌面 LLM Agent (5 个 Story)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Story 1 · Agent Loop + 防循环
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  Story 2 · Tool Orchestrator 智能分段
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Story 3 · 4 层 system prompt + 96% Cache 命中
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Story 4 · 上下文分级压缩
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  Story 5 · PolicyEngine 三级风控 + Bash 双通道
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>项目 B · AI 视频生成 SaaS (5 个 Story)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  Story 1 · 蓝绿部署优雅停机三连修 ⭐⭐⭐
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  Story 2 · 任务可恢复架构（无 MQ）⭐⭐⭐
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  Story 3 · 自研 Agent Tool-Calling Loop
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  Story 4 · FIFO 过期感知积分系统 ⭐⭐⭐
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  Story 5 · 多 AI Provider 抽象 + 模型路由
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>项目 C · 员工帮助台 (6 个 Story)
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  Story 1 · 问题清晰度判断 + 参数补全
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  Story 2 · 推荐问题召回（语义/全文/混合三种对比）⭐⭐⭐
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  Story 3 · 全词匹配 + FAQ 语义拦截二层
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  Story 4 · 领域分类 + 子域 Agent 编排
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>  Story 5 · MCP → Skill CLI 演进 + SSO 鉴权 ⭐⭐⭐
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>  Story 6 · RAG 知识库设计（切片 / 维护 / 版本）⭐⭐⭐
+</code></pre></div>
+<hr />
+<h2 id="_1"><strong>🎤 长题答题框架与视觉速记</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>遇到长系统设计题，不要按散文背，统一用下面这个结构回答。</p>
+<table>
+<thead>
+<tr>
+<th>长题类型</th>
+<th>一句话抓手</th>
+<th>推荐回答结构</th>
+<th>最适合补充的图/表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent Runtime / 企业平台</td>
+<td>模型只是推理核心，稳定性来自运行时系统</td>
+<td>入口 → 状态 → 上下文 → 模型 → 工具 → 权限 → 观测</td>
+<td>分层架构图</td>
+</tr>
+<tr>
+<td>Context / RAG</td>
+<td>不是塞更多信息，而是让模型看到高信号信息</td>
+<td>信息来源 → 优先级 → 检索 → 裁剪 → 注入 → 验证</td>
+<td>优先级表、RAG 流程图</td>
+</tr>
+<tr>
+<td>Memory / Compaction</td>
+<td>Memory 服务未来任务，Compaction 服务当前续跑</td>
+<td>生命周期 → 写入条件 → 检索策略 → 冲突/过期处理</td>
+<td>对比表、handoff 模板</td>
+</tr>
+<tr>
+<td>Tool / Sandbox</td>
+<td>Agent 会做事，所以必须可控、可审计</td>
+<td>工具 schema → 权限判断 → 执行 → 观察 → 失败恢复</td>
+<td>权限决策流程图</td>
+</tr>
+<tr>
+<td>Evaluation</td>
+<td>不能只看答案，要看过程轨迹和任务类型</td>
+<td>数据集 → 执行轨迹 → 指标 → 失败归因 → 回归评估</td>
+<td>指标矩阵表</td>
+</tr>
+<tr>
+<td>Coding Agent / Harness</td>
+<td>阶段内自主，阶段间门控</td>
+<td>PRD → 方案 → 开发 → Review → 测试 → 总结</td>
+<td>生命周期图</td>
+</tr>
+</tbody>
+</table>
+<p>长题回答的万能模板：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>面试表达</th>
+<th>避免的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 背景和目标</td>
+<td>先说这个系统解决什么问题、约束是什么</td>
+<td>一上来堆模块名</td>
+</tr>
+<tr>
+<td>2. 架构分层</td>
+<td>用 5 到 8 个层次讲清职责边界</td>
+<td>把所有能力混在一个“大模型”里</td>
+</tr>
+<tr>
+<td>3. 核心链路</td>
+<td>描述一次任务从输入到交付的路径</td>
+<td>只讲静态组件，不讲运行过程</td>
+</tr>
+<tr>
+<td>4. 关键取舍</td>
+<td>解释为什么这样分层、为什么需要门控</td>
+<td>没有 tradeoff，像背八股</td>
+</tr>
+<tr>
+<td>5. 风险和兜底</td>
+<td>讲上下文丢失、工具失败、权限、安全、成本</td>
+<td>只讲理想情况</td>
+</tr>
+<tr>
+<td>6. 指标和验证</td>
+<td>用任务完成率、测试通过率、工具准确率等收口</td>
+<td>不能证明系统有效</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>mindmap
+  root((**Agent 工程化&lt;br/&gt;16 章地图**))
+    第 0 章 项目经历 ⭐
+      项目 A 桌面 LLM Agent
+      项目 B 视频生成 SaaS
+      项目 C 员工帮助台
+      10 个项目追问
+    第 1-3 章 基础与上下文
+      Agent 定义 vs Workflow
+      Runtime 9 层架构
+      上下文 8 层漏斗优先级
+      Context Packet
+    第 4 章 RAG
+      Hybrid Search BM25+向量
+      Rerank + Query Rewrite + HyDE
+      Multi-hop / GraphRAG
+      Agentic / Self / Corrective RAG
+    第 5-6 章 记忆与压缩
+      记忆类型 规则/偏好/经验/状态
+      scope/source/conf/ttl
+      7 种压缩方案对比
+      Handoff Summary + Hook
+    第 7 章 工具与沙箱
+      Schema 设计反例
+      MCP + 结果裁剪
+      权限分级 + 危险审批
+      安全风险 10 类
+    第 8 章 评估
+      BFCL + AST Match
+      GAIA + 准精确匹配
+      LLM Judge / Win Rate
+      失败 11 类归因
+    第 9 章 Coding Agent
+      Codex vs Claude Code
+      AGENTS.md
+      Harness 阶段门控
+      最小修改 + 测试回流
+    第 10 章 训练与模型
+      ReAct 工程细节
+      CPT→SFT→RL 三阶段
+      Observation Mask + GRPO
+      死循环检测
+    第 11-12 章 协议 + Multi-Agent
+      MCP / A2A / Skills / FC
+      Workflow + Agent 混合
+      三层 路由/管理/执行
+      心跳防死锁
+    第 13 章 端侧/多模态/高并发
+      端侧小模型 + 量化
+      视觉链路 + Encoder
+      P99 + KV cache
+    第 14 章 系统设计
+      企业 Coding Agent 平台
+      评估系统 + Memory 服务
+      压缩系统 + 权限系统
+    第 15 章 面试表达
+      STAR 项目包装
+      Agent 工程化 7 金句
+      LangGraph vs AutoGen
+      短答合集</code></pre>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Built with MkDocs Material
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

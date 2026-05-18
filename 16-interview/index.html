@@ -1,0 +1,2499 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agent / LLM 工程师面试准备 - 16 章 200+ 题 46 张图">
+      
+      
+      
+      
+        <link rel="prev" href="../15-sysdesign/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🎤 面试表达 - Agent 工程师面试总册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#15" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Agent 工程师面试总册" class="md-header__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent 工程师面试总册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🎤 面试表达
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📑 导读
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💼 项目经历
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧠 Agent 基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-runtime/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏗️ Runtime 架构
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-context/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📦 上下文工程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-rag/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔍 RAG 与检索
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-memory/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💾 记忆系统
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-compaction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🗜️ 上下文压缩
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔧 工具与沙箱
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-eval/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📊 评估体系
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-coding/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  💻 Coding Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-training/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎓 训练与模型
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-protocols/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🔌 协议与生态
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-multi-agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🤝 Multi-Agent
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-edge/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  📱 端侧/多模态/高并发
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-sysdesign/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏛️ 系统设计
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🎤 面试表达
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Agent 工程师面试总册" class="md-nav__button md-logo" aria-label="Agent 工程师面试总册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agent 工程师面试总册
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📑 导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💼 项目经历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Agent 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Runtime 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 RAG 与检索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 记忆系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-compaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗜️ 上下文压缩
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 工具与沙箱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📊 评估体系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Coding Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 训练与模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 协议与生态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤝 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📱 端侧/多模态/高并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sysdesign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ 系统设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎤 面试表达
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#15_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15 章 · 面试表达汇总】
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.1 · 项目经验表达】面试讲项目模板
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.1 · 项目经验表达】面试讲项目模板">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1511-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.1 · 如果面试官问你做过什么 Agent 相关实践，你怎么讲？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1512-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.2 · 你如何理解 Agent 工程化？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1513-coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.3 · 如果让你设计一个企业内部 Coding Agent 平台，你会怎么做？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1514-coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.4 · 如何衡量一个 Coding Agent 是否真正有效？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152-agent-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.2 · 主动补充的高级观点】Agent 工程化 7 条金句
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.2 · 主动补充的高级观点】Agent 工程化 7 条金句">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1521-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.1 · Agent 不是越自主越好
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1522-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.2 · Agent 的关键不是记住更多，而是忘得更好
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1523-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.3 · Agent 评估要分任务类型，不要用一个指标评估所有能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1524-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.4 · Agent 的安全不应该只靠模型自觉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1525-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.5 · 项目规则文件是 Agent 工程化的低成本入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1526-workflow-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.6 · Workflow 和 Agent 最好结合，而不是互相替代
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1527-agent-agent-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.7 · 生产级 Agent 的最终形态更像 Agent OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#153" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.3 · 高频追问】幻觉/规划/恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.3 · 高频追问】幻觉/规划/恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1531-agent-hallucination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.1 · Agent 为什么容易 hallucination？怎么缓解？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1532-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.2 · Agent 如何做任务规划？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1533-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.3 · 多 Agent 协作有什么价值？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1534-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.4 · Agent 如何做错误恢复？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1535-agent-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.5 · 如何减少 Agent 的 AI 痕迹或模板化输出？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-langgraph-vs-autogen-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.4 · 框架对比与项目包装】LangGraph vs AutoGen / STAR
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.4 · 框架对比与项目包装】LangGraph vs AutoGen / STAR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1541-langgraph-autogen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.4.1 · LangGraph 和 AutoGen 怎么选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1542-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.4.2 · 项目用 STAR 怎么包装？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1543-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.4.3 · 如何一句话回答"AI 从对话转向干活"？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#155" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.5 · 高级版完整回答】可以直接背的增强版
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.5 · 高级版完整回答】可以直接背的增强版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么看 Agent 开发的难点？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么设计 Agent 的上下文？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：RAG 怎么做才能稳定？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么理解 Agent memory？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding-agent-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：Coding Agent 为什么需要 Harness？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么比较几类 Coding Agent 产品？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：Agent 怎么评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：未来 Agent 产品的发展方向是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#156" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.6 · 面试压轴金句】总结口径
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#157" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.7 · 短答合集】可以直接背的短答案
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#158-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.8 · 进阶专题速记】30 行可背短答
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#15_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15 章 · 面试表达汇总】
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.1 · 项目经验表达】面试讲项目模板
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.1 · 项目经验表达】面试讲项目模板">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1511-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.1 · 如果面试官问你做过什么 Agent 相关实践，你怎么讲？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1512-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.2 · 你如何理解 Agent 工程化？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1513-coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.3 · 如果让你设计一个企业内部 Coding Agent 平台，你会怎么做？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1514-coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.1.4 · 如何衡量一个 Coding Agent 是否真正有效？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152-agent-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.2 · 主动补充的高级观点】Agent 工程化 7 条金句
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.2 · 主动补充的高级观点】Agent 工程化 7 条金句">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1521-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.1 · Agent 不是越自主越好
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1522-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.2 · Agent 的关键不是记住更多，而是忘得更好
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1523-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.3 · Agent 评估要分任务类型，不要用一个指标评估所有能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1524-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.4 · Agent 的安全不应该只靠模型自觉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1525-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.5 · 项目规则文件是 Agent 工程化的低成本入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1526-workflow-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.6 · Workflow 和 Agent 最好结合，而不是互相替代
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1527-agent-agent-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.2.7 · 生产级 Agent 的最终形态更像 Agent OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#153" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.3 · 高频追问】幻觉/规划/恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.3 · 高频追问】幻觉/规划/恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1531-agent-hallucination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.1 · Agent 为什么容易 hallucination？怎么缓解？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1532-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.2 · Agent 如何做任务规划？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1533-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.3 · 多 Agent 协作有什么价值？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1534-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.4 · Agent 如何做错误恢复？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1535-agent-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.3.5 · 如何减少 Agent 的 AI 痕迹或模板化输出？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-langgraph-vs-autogen-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.4 · 框架对比与项目包装】LangGraph vs AutoGen / STAR
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.4 · 框架对比与项目包装】LangGraph vs AutoGen / STAR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1541-langgraph-autogen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.4.1 · LangGraph 和 AutoGen 怎么选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1542-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.4.2 · 项目用 STAR 怎么包装？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1543-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15.4.3 · 如何一句话回答"AI 从对话转向干活"？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#155" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.5 · 高级版完整回答】可以直接背的增强版
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【第 15.5 · 高级版完整回答】可以直接背的增强版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么看 Agent 开发的难点？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么设计 Agent 的上下文？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：RAG 怎么做才能稳定？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么理解 Agent memory？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding-agent-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：Coding Agent 为什么需要 Harness？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：你怎么比较几类 Coding Agent 产品？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：Agent 怎么评估？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果问：未来 Agent 产品的发展方向是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#156" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.6 · 面试压轴金句】总结口径
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#157" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.7 · 短答合集】可以直接背的短答案
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#158-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【第 15.8 · 进阶专题速记】30 行可背短答
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="15">🎤 第 15 章 · 面试表达汇总<a class="headerlink" href="#15" title="Permanent link">&para;</a></h1>
+<h2 id="15_1"><strong>【第 15 章 · 面试表达汇总】</strong><a class="headerlink" href="#15_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>📝 本章把分散在文档各处的如何讲清楚自己怎么收口面试内容汇总到一起。子节顺序按基础 → 进阶 → 短答递进。</p>
+</blockquote>
+<h2 id="151"><strong>【第 15.1 · 项目经验表达】面试讲项目模板</strong><a class="headerlink" href="#151" title="Permanent link">&para;</a></h2>
+<h3 id="q1511-agent"><strong>Q15.1.1 · 如果面试官问你做过什么 Agent 相关实践，你怎么讲？</strong><a class="headerlink" href="#q1511-agent" title="Permanent link">&para;</a></h3>
+<p>可以这样讲：</p>
+<blockquote>
+<p>我最近重点研究和实践的是 Agent 工程化，尤其是 Coding Agent 从需求到交付的流程控制。我的理解是，单靠模型直接改代码不够稳定，所以需要一套 Harness 机制，把需求拆成 PRD、技术方案、开发、Review、测试验证和交付总结等阶段。每个阶段都有明确输入输出，同时通过 AGENTS.md、<code>.harness/</code>、checkpoint、summary 和 memory 保存项目规则、任务状态和历史经验。这样即使对话中断或上下文被压缩，也能恢复任务，不会完全依赖聊天历史。</p>
+</blockquote>
+<p>追问：这个实践的难点是什么？</p>
+<p>答：难点在于如何控制上下文和流程边界。读太多历史会引入噪音，读太少又会漏掉关键经验；流程太松 Agent 容易跳步，流程太重又影响效率。所以需要最小上下文读取、阶段门控和可恢复状态设计。</p>
+<hr />
+<h3 id="q1512-agent"><strong>Q15.1.2 · 你如何理解 Agent 工程化？</strong><a class="headerlink" href="#q1512-agent" title="Permanent link">&para;</a></h3>
+<p>Agent 工程化不是简单写 prompt，而是把 Agent 放进真实生产流程中，让它可控、可观测、可恢复、可评估。</p>
+<p>它包括：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>规则工程：明确项目约束
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>上下文工程：控制模型输入
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>工具工程：标准化工具调用
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>状态工程：保存任务进度
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>记忆工程：沉淀可复用经验
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>权限工程：控制风险动作
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>压缩工程：支持长任务
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>评估工程：量化能力表现
+</code></pre></div>
+<p>追问：为什么 Agent 工程化重要？</p>
+<p>答：因为真实业务不是 demo。任务会中断，需求会变化，工具会失败，模型会误判。工程化是把 Agent 从“偶尔好用”变成“稳定可用”的关键。</p>
+<hr />
+<h3 id="q1513-coding-agent"><strong>Q15.1.3 · 如果让你设计一个企业内部 Coding Agent 平台，你会怎么做？</strong><a class="headerlink" href="#q1513-coding-agent" title="Permanent link">&para;</a></h3>
+<p>我会按“入口、流程、上下文、工具、权限、评估”六层设计，而不是只做一个聊天入口。</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>职责</th>
+<th>关键设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入口层</td>
+<td>接 IDE、CLI、Web、需求系统</td>
+<td>用户身份、项目选择、任务创建</td>
+</tr>
+<tr>
+<td>流程层</td>
+<td>PRD、方案、开发、Review、测试、上线准备</td>
+<td>阶段门控、失败回流、人工确认</td>
+</tr>
+<tr>
+<td>上下文层</td>
+<td>组装项目规则、相关文件、历史需求、当前状态</td>
+<td>Context Packet、去重、优先级、压缩摘要</td>
+</tr>
+<tr>
+<td>工具层</td>
+<td>接代码仓库、CI、测试平台、知识库、发布系统</td>
+<td>统一工具 schema、错误恢复、轨迹记录</td>
+</tr>
+<tr>
+<td>权限层</td>
+<td>控制文件写入、命令执行、网络访问和上线动作</td>
+<td>沙箱、审批、白名单、审计日志</td>
+</tr>
+<tr>
+<td>评估层</td>
+<td>衡量任务效果和失败原因</td>
+<td>完成率、测试通过率、人工介入、安全拦截</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart TB
+  Dev(["👨‍💻 开发者"]):::actor
+  PM(["👔 PM / TL"]):::actor
+
+  subgraph L1["🟡 [L1] 接入层"]
+    direction LR
+    IDE["IDE 插件"]:::l1
+    CLI["CLI"]:::l1
+    Web["Web Console"]:::l1
+    Jira["Jira/需求系统"]:::l1
+  end
+
+  subgraph L2["🔵 [L2] 流程编排层 · Harness Orchestrator"]
+    direction LR
+    PRDA["PRD&lt;br/&gt;Agent"]:::l2
+    DesA["Design&lt;br/&gt;Agent"]:::l2
+    DevA["Dev&lt;br/&gt;Agent"]:::l2
+    RevA["Review&lt;br/&gt;Agent"]:::l2
+    QAA["QA&lt;br/&gt;Agent"]:::l2
+  end
+
+  subgraph L3["🟢 [L3] 上下文服务"]
+    direction LR
+    Rules[("项目规则&lt;br/&gt;AGENTS.md")]:::l3
+    CodeIdx[("代码索引&lt;br/&gt;AST+Embedding")]:::l3
+    KB[("知识库&lt;br/&gt;历史PRD/复盘")]:::l3
+    Mem[("Memory&lt;br/&gt;scope/ttl/conf")]:::l3
+    Packer["📦 Context Packet 装配器"]:::l3p
+  end
+
+  subgraph L4["🔴 [L4] Agent Runtime"]
+    direction LR
+    Router["模型路由&lt;br/&gt;大/小分级"]:::l4
+    TB["Tool Broker"]:::l4
+    SM["State Manager"]:::l4
+    CE["Compaction"]:::l4
+  end
+
+  subgraph L5["🟠 [L5] 权限与沙箱"]
+    direction LR
+    RBAC["🛡️ RBAC 引擎"]:::l5
+    WL["命令白名单"]:::l5
+    Apr["⚠️ 危险审批"]:::l5
+    Aud["审计日志"]:::l5
+  end
+
+  subgraph L6["🟣 [L6] 企业工具集成"]
+    direction LR
+    Repo["GitLab/GitHub"]:::l6
+    CI["Jenkins/Actions"]:::l6
+    Test["测试平台"]:::l6
+    Deploy["发布系统"]:::l6
+    Notify["告警/通知"]:::l6
+  end
+
+  subgraph Obs["🩷 [侧] 评估与观测"]
+    direction LR
+    Trace[("Trace Storage")]:::obs
+    Bench["Benchmark"]:::obs
+    RCA["失败归因"]:::obs
+    Dash["Dashboard"]:::obs
+  end
+
+  Dev --&gt; IDE &amp; CLI
+  PM --&gt; Web &amp; Jira
+  L1 ==&gt; L2
+  L2 ==&gt; Packer
+  Rules &amp; CodeIdx &amp; KB &amp; Mem --&gt; Packer
+  Packer ==&gt; L4
+  L4 ==&gt; RBAC
+  RBAC --&gt; WL &amp; Apr &amp; Aud
+  Apr -.-&gt;|"高危审批"| PM
+  RBAC ==&gt; L6
+  Aud --&gt; Trace
+  SM -.-&gt; Trace
+  Trace --&gt; RCA --&gt; Bench --&gt; Dash
+  RCA -.-&gt;|"反馈优化"| L2
+  L6 -.-&gt; Notify
+  Notify -.-&gt; Dev
+
+  classDef actor fill:#2C3E50,stroke:#1a252f,color:#fff,stroke-width:2px
+  classDef l1 fill:#FFF3CD,stroke:#F5A623,color:#856404
+  classDef l2 fill:#D4E9FF,stroke:#4A90E2,color:#1F4E8C
+  classDef l3 fill:#D4F4DD,stroke:#27AE60,color:#0F5132
+  classDef l3p fill:#A9E5BB,stroke:#27AE60,color:#0F5132,stroke-width:2px
+  classDef l4 fill:#FFE0E6,stroke:#E63946,color:#7A1D2A
+  classDef l5 fill:#FFE0B3,stroke:#FF8C00,color:#7A4500,stroke-width:1.5px
+  classDef l6 fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C
+  classDef obs fill:#FFB3BA,stroke:#D0021B,color:#5C0009</code></pre>
+<p>面试收口可以说：企业内部 Coding Agent 的价值不只是自动写代码，而是把需求交付过程变成可审计、可恢复、可评估的系统。</p>
+<p>追问：你会如何保证安全？</p>
+<p>答：通过沙箱、审批、白名单命令、敏感文件拦截、危险操作 Hook、审计日志和人工确认节点来保证安全。上线、数据库迁移、生产配置修改这类动作必须人工审批。</p>
+<hr />
+<h3 id="q1514-coding-agent"><strong>Q15.1.4 · 如何衡量一个 Coding Agent 是否真正有效？</strong><a class="headerlink" href="#q1514-coding-agent" title="Permanent link">&para;</a></h3>
+<p>不能只看它能不能生成代码，而要看：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>需求完成率
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>测试通过率
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Patch 被接受率
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>人工修改次数
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>平均完成时间
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>工具调用成功率
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>上下文压缩后续跑成功率
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>线上缺陷率
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>安全拦截次数
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>用户满意度
+</code></pre></div>
+<pre class="mermaid"><code>mindmap
+  root((**Coding Agent&lt;br/&gt;有效性 10 维**))
+    📈 交付维度
+      需求完成率 任务真完成?
+      测试通过率 代码真能跑?
+      Patch 被接受率 PR 真能合?
+    🔧 质量维度
+      人工修改次数 越少越好
+      线上缺陷率 上线后真不出 bug?
+    ⚡ 效率维度
+      平均完成时间 端到端耗时
+      工具调用成功率 一次成 vs 反复试
+    🛡️ 稳定性维度
+      上下文压缩后续跑成功率 长任务能续吗
+      安全拦截次数 越权行为是否被挡住
+    😊 体验维度
+      用户满意度 真的好用吗</code></pre>
+<p>如果 Agent 生成了很多代码但测试不过，或者需要大量人工返工，就不算有效。</p>
+<p>追问：你会如何做持续评估？</p>
+<p>答：建立固定评估集和真实任务回放集，定期跑 benchmark，同时记录线上使用数据，如任务成功率、失败原因、人工介入点。重要版本发布前做标准评估，日常开发做低成本快速评估。</p>
+<hr />
+<h2 id="152-agent-7"><strong>【第 15.2 · 主动补充的高级观点】Agent 工程化 7 条金句</strong><a class="headerlink" href="#152-agent-7" title="Permanent link">&para;</a></h2>
+<h3 id="q1521-agent"><strong>Q15.2.1 · Agent 不是越自主越好</strong><a class="headerlink" href="#q1521-agent" title="Permanent link">&para;</a></h3>
+<p>很多面试官会喜欢这个观点。Agent 的自主性需要边界。完全自主容易跳过确认、误用工具、扩大修改范围。生产环境里更现实的做法是“阶段内自主，阶段间受控”。比如在开发阶段内可以自主搜索和修改，但从方案进入开发、从测试进入上线，必须满足门控条件。</p>
+<p>这个观点可以结合 Harness 讲。</p>
+<hr />
+<h3 id="q1522-agent"><strong>Q15.2.2 · Agent 的关键不是记住更多，而是忘得更好</strong><a class="headerlink" href="#q1522-agent" title="Permanent link">&para;</a></h3>
+<p>长期记忆、RAG、长上下文都能让 Agent 看到更多信息，但更多不等于更好。真正难的是筛选、压缩、过期、去重和冲突处理。上下文工程的本质是让每个 token 都有价值。</p>
+<p>这个观点可以用来回答上下文工程和 memory 题。</p>
+<hr />
+<h3 id="q1523-agent"><strong>Q15.2.3 · Agent 评估要分任务类型，不要用一个指标评估所有能力</strong><a class="headerlink" href="#q1523-agent" title="Permanent link">&para;</a></h3>
+<p>工具调用看 AST Match，问答看 Exact Match 或 faithfulness，开放生成看 LLM Judge 和人工验证，代码任务看测试通过率和 patch 接受率，长任务看续跑成功率和状态保持率。</p>
+<p>这个观点可以联系到第 8 章的 BFCL、GAIA、LLM Judge、Win Rate 评估体系——每种任务对应不同评估手段。</p>
+<hr />
+<h3 id="q1524-agent"><strong>Q15.2.4 · Agent 的安全不应该只靠模型自觉</strong><a class="headerlink" href="#q1524-agent" title="Permanent link">&para;</a></h3>
+<p>模型可以判断风险，但最终权限必须由确定性系统控制。比如是否允许读取 <code>.env</code>、是否允许 <code>git push</code>、是否允许执行数据库迁移，不能只让模型自己决定。要有权限引擎、沙箱、审批和审计。</p>
+<hr />
+<h3 id="q1525-agent"><strong>Q15.2.5 · 项目规则文件是 Agent 工程化的低成本入口</strong><a class="headerlink" href="#q1525-agent" title="Permanent link">&para;</a></h3>
+<p>不管使用哪种 Coding Agent，先维护好 AGENTS.md、CLAUDE.md 或类似规则文件，都能显著提高稳定性。因为它把项目约定从聊天窗口转移到仓库文件，支持版本控制和团队共享。</p>
+<p>这个观点很适合结合 Codex、Claude Code、Harness 一起讲。</p>
+<hr />
+<h3 id="q1526-workflow-agent"><strong>Q15.2.6 · Workflow 和 Agent 最好结合，而不是互相替代</strong><a class="headerlink" href="#q1526-workflow-agent" title="Permanent link">&para;</a></h3>
+<p>Workflow 提供阶段和边界，Agent 提供灵活推理和执行。研发交付、客服处理、合规审查、运维排障都适合这种组合。完全固定流程不够灵活，完全自由 Agent 不够可控。</p>
+<hr />
+<h3 id="q1527-agent-agent-os"><strong>Q15.2.7 · 生产级 Agent 的最终形态更像 Agent OS</strong><a class="headerlink" href="#q1527-agent-agent-os" title="Permanent link">&para;</a></h3>
+<p>它会有工具、权限、记忆、上下文、压缩、Hooks、评估、观测和工作流。模型只是其中的推理核心。未来竞争点可能不只是模型本身，而是谁能把 Agent 放进真实流程里稳定运行。</p>
+<hr />
+<hr />
+<h2 id="153"><strong>【第 15.3 · 高频追问】幻觉/规划/恢复</strong><a class="headerlink" href="#153" title="Permanent link">&para;</a></h2>
+<h3 id="q1531-agent-hallucination"><strong>Q15.3.1 · Agent 为什么容易 hallucination？怎么缓解？</strong><a class="headerlink" href="#q1531-agent-hallucination" title="Permanent link">&para;</a></h3>
+<p>Agent 幻觉常来自缺少上下文、错误记忆、工具结果误读、模型过度推断。</p>
+<p>缓解方式包括：让 Agent 优先读真实文件和工具结果；要求引用证据；不确定时提问；减少无关上下文；使用评估和测试验证；对关键动作加入人工确认。</p>
+<hr />
+<h3 id="q1532-agent"><strong>Q15.3.2 · Agent 如何做任务规划？</strong><a class="headerlink" href="#q1532-agent" title="Permanent link">&para;</a></h3>
+<p>可以用显式计划，如 TODO list、阶段计划、子任务拆分。也可以用 workflow 限制阶段，比如先 PRD，再方案，再开发。</p>
+<p>复杂任务中，规划应该可更新。工具结果可能推翻原计划，所以 Agent 需要根据观察结果动态调整。</p>
+<hr />
+<h3 id="q1533-agent"><strong>Q15.3.3 · 多 Agent 协作有什么价值？</strong><a class="headerlink" href="#q1533-agent" title="Permanent link">&para;</a></h3>
+<p>多 Agent 可以按角色拆分，比如 Planner 负责需求，Architect 负责方案，Coder 负责编码，Reviewer 负责审查，Tester 负责测试，Releaser 负责上线准备。</p>
+<p>价值是让每个角色聚焦不同目标，减少一个 Agent 在同一上下文里同时承担太多职责。</p>
+<p>风险是通信成本、状态同步和责任边界复杂。</p>
+<hr />
+<h3 id="q1534-agent"><strong>Q15.3.4 · Agent 如何做错误恢复？</strong><a class="headerlink" href="#q1534-agent" title="Permanent link">&para;</a></h3>
+<p>错误恢复依赖状态记录和反馈循环。工具失败后，Agent 需要记录失败命令、错误信息、已尝试方案，然后调整计划。</p>
+<p>比如测试失败时，不应该直接总结完成，而是回到开发阶段修复。Harness 里的失败回流就是这个思想。</p>
+<hr />
+<h3 id="q1535-agent-ai"><strong>Q15.3.5 · 如何减少 Agent 的 AI 痕迹或模板化输出？</strong><a class="headerlink" href="#q1535-agent-ai" title="Permanent link">&para;</a></h3>
+<p>从写作角度，可以减少固定句式、过度排比、符号装饰和机械总结。让段落围绕真实观察推进，加入具体细节、犹豫、判断和取舍。</p>
+<p>从 Agent 系统角度，可以通过项目风格记忆、写作样例、输出约束和人工反馈让模型更贴近真实团队文档风格。</p>
+<hr />
+<h2 id="154-langgraph-vs-autogen-star"><strong>【第 15.4 · 框架对比与项目包装】LangGraph vs AutoGen / STAR</strong><a class="headerlink" href="#154-langgraph-vs-autogen-star" title="Permanent link">&para;</a></h2>
+<h3 id="q1541-langgraph-autogen"><strong>Q15.4.1 · LangGraph 和 AutoGen 怎么选？</strong><a class="headerlink" href="#q1541-langgraph-autogen" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>LangGraph：
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  特点：图编排，节点 + 边 + 状态，强可控
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  优势：状态机式工作流、可视化、可中断/可恢复
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  适合：流程相对固定但需要 LLM 决策的场景
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        客服工单、审批流、ETL with LLM
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>AutoGen：
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  特点：多 Agent 对话编排，角色 + 群聊 + 共识
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  优势：多 Agent 协作天然支持、对话式开发体验好
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  适合：需要多角色协作的场景
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        代码 Review、辩论式分析、复杂研究任务
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>二选一口径：
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  - 流程清晰、状态复杂 → LangGraph
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  - 角色多、协作动态 → AutoGen
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>  - 都要 → 用 LangGraph 做骨架，AutoGen 做单个节点内部的多 Agent
+</code></pre></div>
+<p>追问：那 LangChain 现在还用吗？</p>
+<p>答：LangChain 现在更多被定位为"基础抽象层"——Document、Embedding、VectorStore、LLM 封装。复杂编排已经迁移到 LangGraph 了。生产环境真正用 LangChain 的链式调用越来越少，用它的工具适配层（loaders、splitters、retrievers）还是常见。</p>
+<hr />
+<h3 id="q1542-star"><strong>Q15.4.2 · 项目用 STAR 怎么包装？</strong><a class="headerlink" href="#q1542-star" title="Permanent link">&para;</a></h3>
+<p>STAR = Situation / Task / Action / Result，面试官最爱听的结构。</p>
+<p>烂例子：</p>
+<blockquote>
+<p>我做了一个客服 Agent，用了 RAG 和 Function Calling，效果不错。</p>
+</blockquote>
+<p>STAR 版本：</p>
+<blockquote>
+<p><strong>Situation</strong>: 业务客服每天处理 5000+ 工单，30% 是重复 FAQ 类问题，但人工平均要 8 分钟/单，且夜间无人覆盖。
+<strong>Task</strong>: 我负责设计并落地一个 RAG + Agent 系统，目标是把 FAQ 类工单的人工介入率从 100% 降到 30% 以下。
+<strong>Action</strong>:
+  1. 抓取 3 个月历史工单 + 内部知识库，做 chunking（按问答对切，平均 200 token）+ embedding，hybrid search (BM25 + 向量) + cross-encoder rerank
+  2. Agent 层用 ReAct，工具有：knowledge_search / order_lookup / refund_eligibility_check
+  3. 设计了置信度阈值（&lt; 0.7 自动转人工，附 Agent 推理轨迹）
+  4. 上线前用 200 条真实工单做回归测试，调 prompt + 阈值
+<strong>Result</strong>: 上线 6 周后，FAQ 工单的 AI 处理率达到 65%，平均响应时间从 8 分钟降到 45 秒，人工转接率从 100% 降到 12%，月节省人力成本 X 万。</p>
+</blockquote>
+<p>数字 + 对比 + 时间窗，比"效果不错"有说服力 10 倍。</p>
+<p>追问：如果数字不好看怎么办？</p>
+<p>答：讲过程亮点 + 学到的教训。比如"准确率只到 70%，没达到 80% 的目标，后来分析发现 chunking 策略对长文档不友好，后续切到 hierarchical chunking 后提升到 78%"——展现你能看清问题、能迭代，比硬吹数字可信。</p>
+<hr />
+<h3 id="q1543-ai"><strong>Q15.4.3 · 如何一句话回答"AI 从对话转向干活"？</strong><a class="headerlink" href="#q1543-ai" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Chatbot 卖的是"我能告诉你怎么做"，Agent 卖的是"我能替你做了"。前者的价值在信息差，后者的价值在执行力。所以未来 Agent 产品的核心竞争力不只是模型能力，而是工具生态 + 权限沙箱 + 工作流 + 评估闭环——能不能真的把事情做完、做对、做得可追溯。</p>
+</blockquote>
+<p>可以接：</p>
+<blockquote>
+<p>这也是为什么 Coding Agent / Office Agent / RPA-style Agent 最近这么火——它们都在尝试把"建议"变成"动作"。</p>
+</blockquote>
+<hr />
+<h2 id="155"><strong>【第 15.5 · 高级版完整回答】可以直接背的增强版</strong><a class="headerlink" href="#155" title="Permanent link">&para;</a></h2>
+<h3 id="agent"><strong>如果问：你怎么看 Agent 开发的难点？</strong><a class="headerlink" href="#agent" title="Permanent link">&para;</a></h3>
+<p>我会说，Agent 开发的难点不只是模型调用，而是如何把模型放进一个可控的任务执行系统。具体包括上下文怎么装配、RAG 怎么召回、工具怎么调用、状态怎么保存、长会话怎么压缩、记忆怎么治理、权限怎么控制、失败怎么恢复，以及最终怎么评估。很多 Agent demo 看起来很好，是因为任务短、上下文简单；但真实生产环境里，任务会中断，工具会失败，知识会过期，权限会受限，所以必须做工程化设计。</p>
+<hr />
+<h3 id="agent_1"><strong>如果问：你怎么设计 Agent 的上下文？</strong><a class="headerlink" href="#agent_1" title="Permanent link">&para;</a></h3>
+<p>我会把上下文拆成不同层级。最高优先级是系统安全和用户当前任务，其次是项目规则、相关文件、最近工具结果和当前状态，再往后是压缩摘要和长期记忆。每个上下文片段最好都有来源、优先级、作用域和去重 key。这样可以避免上下文变成一大段不可控文本。我的原则是，不追求塞得多，而是让模型每一轮看到高信号信息。</p>
+<hr />
+<h3 id="rag"><strong>如果问：RAG 怎么做才能稳定？</strong><a class="headerlink" href="#rag" title="Permanent link">&para;</a></h3>
+<p>我会从知识源清洗、chunking、hybrid search、rerank、query rewrite、权限过滤和评估几个环节做。RAG 不只是向量检索，企业场景里还要处理精确关键词、权限、文档层级、表格、代码和历史版本。复杂问题可以用 Agentic RAG 或 GraphRAG，多跳检索要保留证据链。评估时不只看最终答案，还要看 context precision、context recall、faithfulness 和 answer relevance。</p>
+<hr />
+<h3 id="agent-memory"><strong>如果问：你怎么理解 Agent memory？</strong><a class="headerlink" href="#agent-memory" title="Permanent link">&para;</a></h3>
+<p>我会把 memory 分为强规则、用户偏好、项目经验和当前状态。强规则应该写进项目规则文件，自动 memory 只保存稳定、可复用的信息。每条 memory 都应该有 scope、source、confidence 和 ttl，防止过期、冲突和跨项目污染。Memory 不是越多越好，真正重要的是检索相关记忆，并且只在需要时注入上下文。</p>
+<hr />
+<h3 id="coding-agent-harness"><strong>如果问：Coding Agent 为什么需要 Harness？</strong><a class="headerlink" href="#coding-agent-harness" title="Permanent link">&para;</a></h3>
+<p>因为 Coding Agent 如果直接拿需求改代码，很容易跳过需求确认、方案评审和测试验证。Harness 把研发任务拆成 PRD、技术方案、开发、Review、测试、上线准备和总结沉淀，每个阶段都有输入输出和门控条件。它解决的是上下文不可控、过程不可恢复、交付不可验证、经验不可复用的问题。我的理解是，Harness 不是让模型更聪明，而是让模型的行为更符合真实研发流程。</p>
+<hr />
+<h3 id="coding-agent"><strong>如果问：你怎么比较几类 Coding Agent 产品？</strong><a class="headerlink" href="#coding-agent" title="Permanent link">&para;</a></h3>
+<p>我会从运行方式、规则系统、记忆机制、上下文压缩、工具生态、权限沙箱、Hooks 生命周期、团队治理和评估观测几个维度看。轻量本地运行时适合个人快速 coding，生命周期平台适合团队治理和长任务自动化，Harness 类系统适合把 Agent 放进需求到交付的流程。不同产品不是简单谁更强，而是设计目标不同。</p>
+<hr />
+<h3 id="agent_2"><strong>如果问：Agent 怎么评估？</strong><a class="headerlink" href="#agent_2" title="Permanent link">&para;</a></h3>
+<p>要按任务类型评估。工具调用看函数名和参数是否正确，可以用 AST 匹配；真实世界任务看最终答案和任务完成率，可以用准精确匹配；开放式生成可以用 LLM Judge、Win Rate 和人工验证；代码任务看测试通过率、patch 接受率、人工修改次数；长任务看压缩后续跑成功率和状态保持率。评估系统最好能记录轨迹，方便失败归因。</p>
+<hr />
+<h3 id="agent_3"><strong>如果问：未来 Agent 产品的发展方向是什么？</strong><a class="headerlink" href="#agent_3" title="Permanent link">&para;</a></h3>
+<p>我认为会从“单次对话助手”走向“可治理的任务执行系统”。未来 Agent 产品会越来越重视上下文工程、工具生态、权限沙箱、长期记忆、压缩交接、Hooks、评估和工作流。模型能力会继续提升，但真正能落地的 Agent，一定要能被团队控制、观测、恢复和评估。</p>
+<hr />
+<h2 id="156"><strong>【第 15.6 · 面试压轴金句】总结口径</strong><a class="headerlink" href="#156" title="Permanent link">&para;</a></h2>
+<p>如果最后让你总结“你对 Agent 的理解”，可以这样说：</p>
+<blockquote>
+<p>我理解 Agent 的关键不只是模型能力，而是模型外面的工程系统。一个可用的 Agent 需要上下文装配、工具调用、状态管理、记忆、压缩、安全和评估共同支撑。比如 Coding Agent 不能只靠模型直接改代码，它还需要项目规则、阶段门控、测试验证、checkpoint 和交付总结。BFCL、GAIA 这类 benchmark 可以评估工具调用和综合任务能力，LLM Judge、Win Rate 可以评估开放式生成质量。真正落地时，还要考虑权限沙箱、长任务压缩、记忆治理和持续评估。我的判断是，未来 Agent 会从单次对话助手，逐步变成可治理、可恢复、可协作的工程运行时。</p>
+</blockquote>
+<hr />
+<h2 id="157"><strong>【第 15.7 · 短答合集】可以直接背的短答案</strong><a class="headerlink" href="#157" title="Permanent link">&para;</a></h2>
+<p>Agent 是什么？</p>
+<blockquote>
+<p>Agent 是能围绕目标进行多轮推理、工具调用和状态更新的任务执行系统，不只是聊天模型。</p>
+</blockquote>
+<p>Agent 和 Chatbot 区别？</p>
+<blockquote>
+<p>Chatbot 主要生成回复，Agent 会调用工具并改变外部状态。</p>
+</blockquote>
+<p>上下文工程是什么？</p>
+<blockquote>
+<p>管理模型在每轮调用时看到什么信息，包括规则、历史、工具结果、记忆、文件和压缩摘要。</p>
+</blockquote>
+<p>Memory 和 Compaction 区别？</p>
+<blockquote>
+<p>Memory 是跨会话长期经验，Compaction 是当前会话的上下文瘦身和任务交接。</p>
+</blockquote>
+<p>BFCL 评估什么？</p>
+<blockquote>
+<p>评估函数调用能力，看模型是否选对函数、填对参数、判断是否需要调用工具。</p>
+</blockquote>
+<p>AST 匹配为什么重要？</p>
+<blockquote>
+<p>它比较函数调用结构，而不是字符串表面形式，可以忽略参数顺序和格式差异。</p>
+</blockquote>
+<p>GAIA 评估什么？</p>
+<blockquote>
+<p>评估通用 AI 助手在真实世界任务中的综合能力，包括多步推理、工具使用、网页浏览、文件处理等。</p>
+</blockquote>
+<p>LLM Judge 是什么？</p>
+<blockquote>
+<p>用大模型作为评委，对开放式生成结果进行多维度评分。</p>
+</blockquote>
+<p>Win Rate 是什么？</p>
+<blockquote>
+<p>成对比较生成结果和参考结果，统计生成结果胜出的比例。</p>
+</blockquote>
+<p>Harness 是什么？</p>
+<blockquote>
+<p>一套面向研发交付的 Agent 工程化框架，用阶段、状态、记忆和产物让 Agent 更可控、可恢复、可验证。</p>
+</blockquote>
+<p>Codex 和 Claude Code 区别？</p>
+<blockquote>
+<p>Codex 更像轻量本地 Agent runtime，Claude Code 更像生命周期更完整、Hooks 更显式的 Agent 平台。</p>
+</blockquote>
+<p>Coding Agent 最大难点？</p>
+<blockquote>
+<p>不是写代码本身，而是上下文控制、工具安全、长任务状态保持、测试验证和交付可追溯。</p>
+</blockquote>
+<p>Agent 怎么评估？</p>
+<blockquote>
+<p>按任务类型评估，包括工具调用准确率、任务完成率、Exact Match、测试通过率、响应时间、token 成本、错误恢复率等。</p>
+</blockquote>
+<p>Agent 怎么保证安全？</p>
+<blockquote>
+<p>通过权限模式、沙箱、审批、敏感路径拦截、危险命令检测和审计日志保证安全。</p>
+</blockquote>
+<p>Agent 工程化是什么？</p>
+<blockquote>
+<p>把 Agent 从一次性对话能力，变成可控制、可观测、可恢复、可评估、可持续演进的工程系统。</p>
+</blockquote>
+<hr />
+<h2 id="158-30"><strong>【第 15.8 · 进阶专题速记】30 行可背短答</strong><a class="headerlink" href="#158-30" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>一句话答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool Response 用什么角色塞回？</td>
+<td>user 角色（兼容性最广）或 tool 角色（OpenAI 原生），带 tool_call_id 关联</td>
+</tr>
+<tr>
+<td>SFT 为什么 mask observation？</td>
+<td>observation 是环境输出不是模型该学的，否则模型会"记住"具体数值而不去真调工具</td>
+</tr>
+<tr>
+<td>GRPO 比 PPO 好在哪？</td>
+<td>不要 critic 网络，省一半显存，靠组内相对打分代替绝对价值估计</td>
+</tr>
+<tr>
+<td>Agent 死循环怎么破？</td>
+<td>最大步数 + tool_call hash 检测 + 信息增量检测，触发后降级或转人工</td>
+</tr>
+<tr>
+<td>ReSum 是什么？</td>
+<td>递归摘要，越早的内容压得越狠，token 预算可控且有信息梯度</td>
+</tr>
+<tr>
+<td>MCP vs A2A？</td>
+<td>MCP 是工具协议（USB-C），A2A 是 Agent 通信协议（HTTP），不同层</td>
+</tr>
+<tr>
+<td>Skills vs Function Calling？</td>
+<td>Function Calling 是函数调用接口，Skills 是能力包（含 prompt + tools + 资源）</td>
+</tr>
+<tr>
+<td>Workflow + Agent 怎么用？</td>
+<td>标准流程走 Workflow，异常分支切 Agent，置信度低再转人工</td>
+</tr>
+<tr>
+<td>Multi-Agent 三层？</td>
+<td>路由（轻、快）→ 管理（规划、聚合）→ 执行（专精单能力）</td>
+</tr>
+<tr>
+<td>A2A 防死锁三件套？</td>
+<td>业务超时 + 心跳超时 + 重试上限，心跳走独立通道</td>
+</tr>
+<tr>
+<td>Multi-Agent 三大挑战？</td>
+<td>推理断层 / 结果对齐 / 可观测性</td>
+</tr>
+<tr>
+<td>端侧 Agent 关键？</td>
+<td>小模型 + 量化 + 混合推理，本地优先、隐私优先</td>
+</tr>
+<tr>
+<td>多模态 Agent 关键？</td>
+<td>视觉 token 极大，要分级处理 + 缓存 embedding</td>
+</tr>
+<tr>
+<td>高并发 Agent 关键？</td>
+<td>看 P99 不看均值，流式输出 + 模型分级 + KV cache 服务化</td>
+</tr>
+<tr>
+<td>LangGraph vs AutoGen？</td>
+<td>流程主导 → LangGraph，角色协作主导 → AutoGen</td>
+</tr>
+<tr>
+<td>STAR 包装关键？</td>
+<td>数字 + 对比 + 时间窗，过程有迭代有反思</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Built with MkDocs Material
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
