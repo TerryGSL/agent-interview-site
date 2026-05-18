@@ -1207,6 +1207,89 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#story-7-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Story 7 · 多轮对话状态管理 · 话题切换 / 长对话 / 跨领域 / 子 Agent 协作 ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Story 7 · 多轮对话状态管理 · 话题切换 / 长对话 / 跨领域 / 子 Agent 协作 ⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 多轮对话状态层设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-topicstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 话题栈 TopicStack — 解决话题切换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 长对话处理 — 多轮后怎么办
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 跨领域问题拆分 — 一句话多领域怎么做
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 子 Agent 间协作机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ 边界情况处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#c-15" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2394,6 +2477,89 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#story-7-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Story 7 · 多轮对话状态管理 · 话题切换 / 长对话 / 跨领域 / 子 Agent 协作 ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Story 7 · 多轮对话状态管理 · 话题切换 / 长对话 / 跨领域 / 子 Agent 协作 ⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 多轮对话状态层设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-topicstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 话题栈 TopicStack — 解决话题切换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 长对话处理 — 多轮后怎么办
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 跨领域问题拆分 — 一句话多领域怎么做
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 子 Agent 间协作机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ 边界情况处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#c-15" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2635,6 +2801,8 @@
       领域分类 + 子域 Agent
       MCP → Skill CLI + SSO 换票
       RAG 切片维护与版本
+      多轮对话 + TopicStack 话题切换
+      跨领域拆分 + 子 Agent 协作
     🎯 共同覆盖能力
       Agent 工程化
       长任务调度 + 状态恢复
@@ -3264,25 +3432,25 @@
 <p><strong>A（动作）</strong>：</p>
 <h4 id="_9"><strong>三种召回方式对比（这是面试重点）</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart LR
-  Q([用户原问题&lt;br/&gt;"电脑屏黑了"]):::q
+  Q(["👤 用户原问题&lt;br/&gt;电脑屏黑了"]):::q
 
   subgraph S1["🔵 ① 语义召回 (Dense / Vector)"]
-    E1[Embedding 模型&lt;br/&gt;BGE / e5 / OpenAI]:::dense
-    V1[(向量库&lt;br/&gt;HNSW)]:::dense
-    R1["Top-K 候选&lt;br/&gt;'屏幕不亮'&lt;br/&gt;'笔记本无法开机'&lt;br/&gt;'显示器黑屏'"]:::res
+    E1["Embedding 模型&lt;br/&gt;BGE / e5 / OpenAI"]:::dense
+    V1[("向量库&lt;br/&gt;HNSW")]:::dense
+    R1["Top-K 候选&lt;br/&gt;屏幕不亮&lt;br/&gt;笔记本无法开机&lt;br/&gt;显示器黑屏"]:::res
   end
 
   subgraph S2["🟡 ② 全文召回 (Sparse / BM25)"]
-    T1[分词器&lt;br/&gt;jieba / 自定义]:::sparse
-    I1[(倒排索引&lt;br/&gt;ES / OpenSearch)]:::sparse
-    R2["Top-K 候选&lt;br/&gt;'屏 SOP'&lt;br/&gt;'屏 报修'&lt;br/&gt;'屏 维修单'"]:::res
+    T1["分词器&lt;br/&gt;jieba / 自定义"]:::sparse
+    I1[("倒排索引&lt;br/&gt;ES / OpenSearch")]:::sparse
+    R2["Top-K 候选&lt;br/&gt;屏 SOP&lt;br/&gt;屏 报修&lt;br/&gt;屏 维修单"]:::res
   end
 
   subgraph S3["🟢 ③ 混合召回 (Hybrid)"]
-    H1[并行召回&lt;br/&gt;BM25 + Dense]:::hybrid
-    H2[RRF 融合&lt;br/&gt;排名互补]:::hybrid
-    H3[Cross-Encoder&lt;br/&gt;Rerank Top-10]:::hybrid
-    R3["最终候选&lt;br/&gt;'笔记本屏幕黑屏维修流程'&lt;br/&gt;'屏黑请检查 SN 报修'&lt;br/&gt;..."]:::res
+    H1["并行召回&lt;br/&gt;BM25 + Dense"]:::hybrid
+    H2["RRF 融合&lt;br/&gt;排名互补"]:::hybrid
+    H3["Cross-Encoder&lt;br/&gt;Rerank Top-10"]:::hybrid
+    R3["最终候选&lt;br/&gt;笔记本屏幕黑屏维修流程&lt;br/&gt;屏黑请检查 SN 报修"]:::res
   end
 
   Q ==&gt; E1 --&gt; V1 --&gt; R1
@@ -3923,6 +4091,253 @@
 - 知识更新延迟从原"周更"降到"实时（webhook 触发 5 分钟内生效）"
 - Recall@10 在 6 个月里稳定在 88%+，每次更新都有评估守门
 - 0 起敏感信息泄露事故</p>
+<hr />
+<h3 id="story-7-agent"><strong>Story 7 · 多轮对话状态管理 · 话题切换 / 长对话 / 跨领域 / 子 Agent 协作 ⭐⭐⭐</strong><a class="headerlink" href="#story-7-agent" title="Permanent link">&para;</a></h3>
+<p><strong>S（背景）</strong>：员工帮助台天然是多轮场景——用户问"我电脑坏了"→ Agent 追问设备 → 用户确认 → Agent 报修 → 用户突然问"对了我邮箱也满了"。这里有 4 个生产级痛点：
+1. <strong>多轮状态怎么存</strong>：每轮要记住什么、丢什么
+2. <strong>话题切换怎么识别</strong>：用户突然换主题，老话题怎么处理（continue vs drop vs save）
+3. <strong>长对话怎么处理</strong>：聊到 30+ 轮上下文爆了怎么办
+4. <strong>多领域问题怎么拆</strong>：单条问题里同时问资产+邮箱+网络，怎么协调子 Agent</p>
+<p><strong>T</strong>：设计一套<strong>会话状态层 + 话题栈 + 长会话压缩 + 多 Agent 协作</strong>的完整方案。</p>
+<p><strong>A（动作）</strong>：</p>
+<h4 id="1_1"><strong>① 多轮对话状态层设计</strong><a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>把会话状态拆成 3 层，每层生命周期不同：</p>
+<pre class="mermaid"><code>flowchart TB
+  subgraph L1["🟡 L1 · 用户全局画像 (跨会话持久)"]
+    P1["员工号 / 部门 / 岗位"]:::g
+    P2["历史已解决问题 ID"]:::g
+    P3["偏好 (语言/简洁度/通知方式)"]:::g
+    P4["权限 scope"]:::g
+  end
+
+  subgraph L2["🔵 L2 · 当前会话状态 (Session 级)"]
+    S1["session_id + 起始时间"]:::s
+    S2["话题栈 TopicStack"]:::s
+    S3["已澄清参数 (设备SN/工单号/...)"]:::s
+    S4["已执行动作日志"]:::s
+    S5["待确认动作"]:::s
+  end
+
+  subgraph L3["🔴 L3 · 当前 Turn (单轮)"]
+    T1["用户原 query"]:::t
+    T2["分类结果 + 置信度"]:::t
+    T3["本轮 RAG 召回"]:::t
+    T4["本轮 tool_calls 结果"]:::t
+  end
+
+  L1 -.-&gt;|"注入 system prompt"| L2
+  L2 -.-&gt;|"为本轮提供 context"| L3
+  L3 -.-&gt;|"完成后回写"| L2
+  L2 -.-&gt;|"会话结束时沉淀"| L1
+
+  classDef g fill:#FFF3CD,stroke:#F5A623,color:#856404
+  classDef s fill:#D4E9FF,stroke:#4A90E2,color:#1F4E8C
+  classDef t fill:#FFE0E6,stroke:#E63946,color:#7A1D2A</code></pre>
+<p><strong>存储</strong>：L1 走 PostgreSQL（用户表）/ L2 走 Redis（TTL 24 小时，可手动延期）/ L3 走内存（请求结束即释放）</p>
+<h4 id="2-topicstack"><strong>② 话题栈 TopicStack — 解决话题切换</strong><a class="headerlink" href="#2-topicstack" title="Permanent link">&para;</a></h4>
+<p><strong>核心机制</strong>：用栈结构维护"用户当前在谈什么"。话题不是单线，而是<strong>可中断、可恢复、可丢弃</strong>。</p>
+<pre class="mermaid"><code>sequenceDiagram
+  autonumber
+  actor U as 👤 用户
+  participant TS as 📚 TopicStack
+  participant R as 🧭 路由器
+  participant A as 🤖 子 Agent
+
+  U-&gt;&gt;R: "我电脑坏了"
+  R-&gt;&gt;TS: push(资产/电脑报修, status=clarifying)
+  Note over TS: 栈: [资产/电脑报修]
+  R-&gt;&gt;A: 路由到资产 Agent
+  A--&gt;&gt;U: "你是哪台设备?"
+
+  U-&gt;&gt;R: "对了我邮箱也满了"
+  Note over R: ⚡ 话题切换检测
+  R-&gt;&gt;R: 与栈顶相似度 &lt; 0.3&lt;br/&gt;且实体完全无重叠&lt;br/&gt;→ 判定为切换
+  R-&gt;&gt;TS: push(邮箱/扩容, status=clarifying)
+  Note over TS: 栈: [资产/电脑报修(pending), 邮箱/扩容]
+
+  alt 软切换（保留旧话题）
+    R-&gt;&gt;A: 路由到邮箱 Agent
+    A--&gt;&gt;U: "邮箱满是要清理还是扩容? 顺便提醒你前面电脑的事还没办完"
+  else 硬切换（用户明确放弃旧话题）
+    R-&gt;&gt;TS: pop(资产/电脑报修)
+    R-&gt;&gt;A: 路由到邮箱 Agent
+  end
+
+  U-&gt;&gt;R: "邮箱我先不弄了，电脑那个继续吧"
+  R-&gt;&gt;TS: pop(邮箱) + resume(资产/电脑报修)
+  Note over TS: 栈: [资产/电脑报修(resumed)]
+  R-&gt;&gt;A: 恢复资产话题，加载之前的 context</code></pre>
+<p><strong>话题切换判定规则</strong>（多信号融合）：</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命中"另外"/"对了"/"顺便"/"我还想问"等切换词</td>
+<td>强信号 → 切换</td>
+</tr>
+<tr>
+<td>实体（设备/工单/邮箱）与栈顶完全不重叠</td>
+<td>中信号 → 倾向切换</td>
+</tr>
+<tr>
+<td>领域分类置信度 &lt; 当前栈顶领域</td>
+<td>弱信号</td>
+</tr>
+<tr>
+<td>语义相似度 (cosine) &lt; 0.3</td>
+<td>中信号</td>
+</tr>
+<tr>
+<td>用户明确说"先不弄那个"</td>
+<td>强信号 → pop 栈顶</td>
+</tr>
+</tbody>
+</table>
+<p><strong>栈深度限制</strong>：最多 3 层。超过 3 层提醒用户："你前面还有 N 个未办完的事，要先继续哪个?"</p>
+<h4 id="3_1"><strong>③ 长对话处理 — 多轮后怎么办</strong><a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>flowchart LR
+  Turn([每轮结束]):::t
+
+  Check{"会话&lt;br/&gt;token &gt; 阈值?"}:::g
+  N1["&lt; 4K: 全保留"]:::ok
+  N2["4-8K: 工具结果裁剪"]:::warn
+  N3["8-16K: 旧轮摘要 + 最近 5 轮完整"]:::compact
+  N4["&gt; 16K: 启动 Handoff + 保留 TopicStack"]:::handoff
+
+  Turn ==&gt; Check
+  Check --&gt;|"&lt; 4K"| N1
+  Check --&gt;|"4-8K"| N2
+  Check --&gt;|"8-16K"| N3
+  Check --&gt;|"&gt; 16K"| N4
+  N4 --&gt; Notify["💬 主动告知用户&lt;br/&gt;'对话比较长了，我把前面整理一下继续'"]:::notify
+
+  classDef t fill:#2C3E50,stroke:#1a252f,color:#fff,stroke-width:2px
+  classDef g fill:#FFD43B,stroke:#F08C00,color:#333,stroke-width:2px
+  classDef ok fill:#52C788,stroke:#0F5132,color:#fff
+  classDef warn fill:#FFA94D,stroke:#D9480F,color:#fff
+  classDef compact fill:#4DABF7,stroke:#1864AB,color:#fff
+  classDef handoff fill:#FF6B6B,stroke:#C92A2A,color:#fff
+  classDef notify fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C</code></pre>
+<p><strong>4 级阈值策略</strong>（具体数字按你的 LLM context 调）：
+1. <strong>&lt; 4K tokens</strong>：完整保留，零压缩
+2. <strong>4-8K</strong>：开始裁剪工具结果（保留摘要 + 失败信息，去掉 raw 输出）
+3. <strong>8-16K</strong>：旧轮做 handoff summary，最近 5 轮完整保留
+4. <strong>&gt; 16K</strong>：触发完整 handoff，但<strong>TopicStack 必须无损保留</strong>（用户记得自己问过什么，Agent 不能忘）</p>
+<p><strong>关键铁律</strong>：<strong>TopicStack 不参与压缩</strong>。即使整个对话历史被压缩到 200 token，TopicStack 也要原样保留——不然用户说"接着上一个问题"时 Agent 就懵了。</p>
+<h4 id="4"><strong>④ 跨领域问题拆分 — 一句话多领域怎么做</strong><a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<p>用户："我新入职第一天，需要装 VPN + 申请显示器 + 改邮箱别名"——单条 query 横跨<strong>网络/资产/邮箱</strong>三个领域。</p>
+<pre class="mermaid"><code>flowchart TB
+  Q([📨 用户 query&lt;br/&gt;装 VPN + 申请显示器 + 改邮箱别名]):::q
+
+  Split["🪓 Task Splitter&lt;br/&gt;LLM 拆解 + 实体抽取"]:::split
+  Plan[["📋 子任务计划&lt;br/&gt;━━━━━━━━━━&lt;br/&gt;① 网络/VPN/安装&lt;br/&gt;② 资产/显示器/申请&lt;br/&gt;③ 邮箱/别名/修改"]]:::plan
+
+  Order{"依赖分析"}:::g
+  Par["🔀 并行执行&lt;br/&gt;VPN + 邮箱&lt;br/&gt;(无依赖)"]:::par
+  Seq["📍 串行执行&lt;br/&gt;VPN 先 → 显示器后&lt;br/&gt;(可能依赖工号绑定)"]:::seq
+
+  A1["💻 资产 Agent"]:::sub
+  A2["📧 邮箱 Agent"]:::sub
+  A3["🌐 网络 Agent"]:::sub
+
+  Agg["📊 结果聚合器&lt;br/&gt;统一格式 + 排序 + 进度展示"]:::agg
+  Out([📤 单条回复&lt;br/&gt;分 3 段呈现 + 整体进度条]):::out
+
+  Q ==&gt; Split ==&gt; Plan ==&gt; Order
+  Order ==&gt;|"无强依赖"| Par
+  Order ==&gt;|"有依赖"| Seq
+  Par --&gt; A2 &amp; A3
+  Seq --&gt; A3 --&gt; A1
+  A1 &amp; A2 &amp; A3 ==&gt; Agg ==&gt; Out
+
+  classDef q fill:#2C3E50,stroke:#1a252f,color:#fff,stroke-width:2px
+  classDef split fill:#FFD43B,stroke:#F08C00,color:#333,stroke-width:2px
+  classDef plan fill:#FFE0B3,stroke:#FF8C00,color:#7A4500
+  classDef g fill:#FFD43B,stroke:#F08C00,color:#333
+  classDef par fill:#69DB7C,stroke:#2B8A3E,color:#fff
+  classDef seq fill:#4DABF7,stroke:#1864AB,color:#fff
+  classDef sub fill:#D4F4DD,stroke:#27AE60,color:#0F5132
+  classDef agg fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C,stroke-width:2px
+  classDef out fill:#52C788,stroke:#0F5132,color:#fff,stroke-width:2px</code></pre>
+<p><strong>拆分要点</strong>：
+1. <strong>拆分用 LLM 不用规则</strong>：用户表达千变万化（"还要"、"顺便"、"+"、"和"、"另外"），LLM 比规则鲁棒
+2. <strong>声明子任务依赖</strong>：拆出来的子任务带 <code>depends_on</code> 字段（如改邮箱别名需要先有邮箱账号 → 入职场景下要先建账号）
+3. <strong>并行优先</strong>：无依赖的子任务必须并行（用 asyncio.gather），减少端到端延迟
+4. <strong>失败隔离</strong>：一个子任务失败不阻塞其他（除非有依赖），最终聚合时明确告诉用户"X 完成、Y 失败、Z 待审批"
+5. <strong>统一进度展示</strong>：用户看到的是一条结构化回复（带 emoji + 进度），不是 3 条断裂的回复</p>
+<h4 id="5-agent"><strong>⑤ 子 Agent 间协作机制</strong><a class="headerlink" href="#5-agent" title="Permanent link">&para;</a></h4>
+<p>子 Agent 之间<strong>默认不直接通信</strong>（避免编排复杂度爆炸），用 <strong>Shared Context + Router 中转</strong> 模式：</p>
+<pre class="mermaid"><code>flowchart LR
+  R["🧭 Router&lt;br/&gt;(Manager Agent)"]:::r
+
+  SC[("📦 Shared Context&lt;br/&gt;━━━━━━━━━&lt;br/&gt;用户全局画像&lt;br/&gt;已确认参数&lt;br/&gt;已执行动作&lt;br/&gt;TopicStack")]:::sc
+
+  A1["💻 资产 Agent&lt;br/&gt;(只读 SC)"]:::sub
+  A2["📧 邮箱 Agent&lt;br/&gt;(只读 SC)"]:::sub
+  A3["🌐 网络 Agent&lt;br/&gt;(只读 SC)"]:::sub
+
+  R &lt;==&gt;|"读+写"| SC
+  A1 --&gt;|"只读"| SC
+  A2 --&gt;|"只读"| SC
+  A3 --&gt;|"只读"| SC
+  A1 -.-&gt;|"工具结果回传"| R
+  A2 -.-&gt;|"工具结果回传"| R
+  A3 -.-&gt;|"工具结果回传"| R
+  R -.-&gt;|"写入 SC + 路由下一步"| R
+
+  classDef r fill:#FFD43B,stroke:#F08C00,color:#333,stroke-width:2.5px
+  classDef sc fill:#E5D4F1,stroke:#8E44AD,color:#3D1A5C,stroke-width:2px
+  classDef sub fill:#D4F4DD,stroke:#27AE60,color:#0F5132</code></pre>
+<p><strong>核心约束</strong>：
+- <strong>子 Agent 之间不直接调用</strong>（避免 N×N 通信复杂度）
+- <strong>写 SC 只有 Router 能做</strong>（避免并发冲突）
+- <strong>子 Agent 只读 SC</strong>（保证数据一致性）
+- <strong>跨 Agent 共享数据靠 SC</strong>（如资产 Agent 修工单状态 → 写回 SC → 邮箱 Agent 下一轮看得到）</p>
+<p><strong>典型协作场景</strong>：
+- 资产 Agent 帮用户提了报修单 → 把工单号写入 SC
+- 用户下一轮问"那个报修啥时候好" → Router 看到 SC 有工单号 → 直接调资产 Agent 查询，不用再问用户</p>
+<h4 id="6"><strong>⑥ 边界情况处理</strong><a class="headerlink" href="#6" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户连续 3 轮都答非所问</td>
+<td>提示"我没理解，先帮你转工单"</td>
+</tr>
+<tr>
+<td>子 Agent 间结论冲突（如资产说设备已报修、HR 说设备已回收）</td>
+<td>Router 提示用户人工核对，不强行裁决</td>
+</tr>
+<tr>
+<td>同一会话 5 个话题积压（栈深度爆炸）</td>
+<td>主动提示用户聚焦："你现在最想先解决哪个?"</td>
+</tr>
+<tr>
+<td>用户切换语言（中→英）</td>
+<td>全局画像里更新 lang，下一轮系统 prompt 切换</td>
+</tr>
+<tr>
+<td>鉴权 token 在会话中失效</td>
+<td>自动换票，对用户透明；失败才提示重登</td>
+</tr>
+</tbody>
+</table>
+<p><strong>R（结果）</strong>：
+- 多轮平均深度从单轮提升到 <strong>3.5 轮</strong>（用户更愿意深聊）
+- 话题切换准确率 <strong>88%</strong>（人工标 200 个切换 case 验证）
+- 跨领域单条 query 自动拆分成功率 <strong>75%</strong>（剩下 25% 走澄清）
+- <strong>0 起子 Agent 数据竞争事故</strong>（Router 中转设计起效）
+- 平均会话长度从 1.8 轮提升到 4.2 轮，<strong>自动解决率从 60% 提升到 72%</strong></p>
 <hr />
 <h3 id="c-15"><strong>项目 C 追问应答（必背 15+ 题）</strong><a class="headerlink" href="#c-15" title="Permanent link">&para;</a></h3>
 <h4 id="_16"><strong>架构 &amp; 编排</strong><a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
